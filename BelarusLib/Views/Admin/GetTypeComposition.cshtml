@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BelarusLib.Models.TypeComposition>
+
+@{
+    ViewBag.Title = "GetTypeComposition";
+}
+
+<h2>GetTypeComposition</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateTypeComposition")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeCompositionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeCompositionDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeCompositionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeCompositionDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditTypeComposition", new { id=item.TypeCompositionId }) |            
+            @Html.ActionLink("Delete", "DeleteTypeComposition", new { id=item.TypeCompositionId })
+        </td>
+    </tr>
+}
+
+</table>

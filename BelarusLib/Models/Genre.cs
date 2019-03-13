@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace BelarusLib.Models
 {
     public class Genre
-    {
-        public Guid GenreId { get; set; }
-        public string Name { get; set; }
+    {               
+        public int  GenreId { get; set; }
+        [Required]
+        public string GenreName { get; set; }
+        [Required]
+        public string GenreDescription { get; set; }
         public virtual ICollection<Composition> Compositions { get; set; }
         public Genre()
         {

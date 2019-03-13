@@ -1,0 +1,14 @@
+﻿@model BelarusLib.Models.Genre
+@{
+    ViewBag.Title = "Удаление жанра";
+}
+
+<h1>Вы точно хотите удалить жанр: <b>@Model.GenreName</b>?</h1>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <input type="submit" value="Удалить" class="btn btn-danger" />
+        <a class="btn btn-default" href="@Url.Action("GetGenre", "Admin")">Назад</a>
+    </div>
+}
