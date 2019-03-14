@@ -2,13 +2,13 @@
 @using BelarusLib.Models
 
 @{
-    ViewBag.Title = "GetComposition";
+    ViewBag.Title = "Творы";
 }
 
-<h2>GetComposition</h2>
+<h2>Творы</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateComposition")
+    @Html.ActionLink("Стварць", "CreateComposition")
 </p>
 <table class="table">
     <tr>
@@ -27,29 +27,32 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompositionName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author.AuthorFullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TypeComposition.TypeCompositionName)
-        </td>
-        <td>
-            @foreach (Genre g in item.Genres)
-            {
-                @g.GenreName   
-            }
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditComposition", new { id = item.CompositionId }) |
-            @Html.ActionLink("Details", "DetailsComposition", new { id = item.CompositionId }) |
-            @Html.ActionLink("Delete", "Composition", new { id = item.CompositionId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompositionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.AuthorFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeComposition.TypeCompositionName)
+            </td>
+            <td>
+                <ul>
+                    @foreach (Genre g in item.Genres)
+                    {
+                        <li>@g.GenreName</li>
+                    }
+                </ul>
+            </td>
+            <td>
+                @Html.ActionLink("Рэдагаваць", "EditComposition", new { id = item.CompositionId }) |
+                @Html.ActionLink("Больш падрабязна", "DetailsComposition", new { id = item.CompositionId }) |
+                @Html.ActionLink("Выдалiць", "Composition", new { id = item.CompositionId })
+            </td>
+        </tr>
+    }
 
 </table>

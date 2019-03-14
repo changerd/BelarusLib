@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<BelarusLib.Models.TypeComposition>
 
 @{
-    ViewBag.Title = "GetTypeComposition";
+    ViewBag.Title = "Тыпы твораў";
 }
 
-<h2>GetTypeComposition</h2>
+<h2>Тыпы твораў</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateTypeComposition")
+    @Html.ActionLink("Стварыць", "CreateTypeComposition")
 </p>
 <table class="table">
     <tr>
@@ -29,8 +29,8 @@
             @Html.DisplayFor(modelItem => item.TypeCompositionDescription)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditTypeComposition", new { id=item.TypeCompositionId }) |            
-            @Html.ActionLink("Delete", "DeleteTypeComposition", new { id=item.TypeCompositionId })
+            @Html.ActionLink("Рэдагаваць", "EditTypeComposition", new { id=item.TypeCompositionId }) |            
+            @Html.ActionLink("Выдалiць", "DeleteTypeComposition", new { id=item.TypeCompositionId })
         </td>
     </tr>
 }

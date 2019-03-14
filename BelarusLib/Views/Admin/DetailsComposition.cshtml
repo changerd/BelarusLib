@@ -2,13 +2,12 @@
 @using BelarusLib.Models
 
 @{
-    ViewBag.Title = "DetailsComposition";
+    ViewBag.Title = "Твор";
 }
 
-<h2>DetailsComposition</h2>
+<h2>Твор</h2>
 
-<div>
-    <h4>Composition</h4>
+<div>    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -94,6 +93,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "EditComposition", new { id = Model.CompositionId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Рэдагаваць", "EditComposition", new { id = Model.CompositionId }) |
+    @Html.ActionLink("Назад", "GetComposition")
 </p>

@@ -1,15 +1,15 @@
 ﻿@model BelarusLib.Models.Author
 
 @{
-    ViewBag.Title = "Удаление автора";
+    ViewBag.Title = "Выдаленне аўтара";
 }
 
-<h1>Вы точно хотите удалить автора: <b>@Model.AuthorFullName</b>?</h1>
+<h1>Вы дакладна хочаце выдаліць аўтара: <b>@Model.AuthorFullName</b>?</h1>
 
 @using (Html.BeginForm())
 {
     <div class="form-group">
-        <input type="submit" value="Удалить" class="btn btn-danger" />
+        <input type="submit" value="Выдаліць" class="btn btn-danger" />
         <a class="btn btn-default" href="@Url.Action("GetAuthor", "Admin")">Назад</a>
     </div>
 }

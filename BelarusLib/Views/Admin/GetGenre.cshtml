@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<BelarusLib.Models.Genre>
 
 @{
-    ViewBag.Title = "GetGenre";
+    ViewBag.Title = "Жанры";
 }
 
-<h2>GetGenre</h2>
+<h2>Жанры</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateGenre")
+    @Html.ActionLink("Стварыць", "CreateGenre")
 </p>
 <table class="table">
     <tr>
@@ -20,19 +20,19 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.GenreName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GenreDescription)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditGenre", new { id=item.GenreId }) |            
-            @Html.ActionLink("Delete", "DeleteGenre", new { id=item.GenreId })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GenreName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GenreDescription)
+            </td>
+            <td>
+                @Html.ActionLink("Рэдагаваць", "EditGenre", new { id = item.GenreId }) |
+                @Html.ActionLink("Выдалiць", "DeleteGenre", new { id = item.GenreId })
+            </td>
+        </tr>
+    }
 </table>

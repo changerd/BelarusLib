@@ -1,6 +1,6 @@
 ﻿@model BelarusLib.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Регистрация";
+    ViewBag.Title = "Рэгістрацыя";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -8,9 +8,20 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Создайте новую учетную запись.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.UserName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.FullName, new { @class = "form-control" })
+        </div>
+    </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">

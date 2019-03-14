@@ -49,26 +49,30 @@ namespace BelarusLib.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Адрес электронной почты")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Логiн")]        
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [Display(Name = "Запомнить меня")]
+        [Display(Name = "Запомніць мяне")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
+        [Required]        
+        [Display(Name = "Логiн")]
+        public string UserName { get; set; }
         [Required]
         [EmailAddress]
-        [Display(Name = "Адрес электронной почты")]
+        [Display(Name = "Адрас электроннай пошты")]
         public string Email { get; set; }
-
+        [Required]
+        [Display(Name = "Iмя")]
+        public string FullName { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -76,7 +80,7 @@ namespace BelarusLib.Models
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Подтверждение пароля")]
+        [Display(Name = "Пацвярджэнне пароля")]
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
     }

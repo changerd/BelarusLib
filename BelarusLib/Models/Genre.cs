@@ -11,8 +11,10 @@ namespace BelarusLib.Models
     {               
         public int  GenreId { get; set; }
         [Required]
+        [Display(Name = "Назва")]
         public string GenreName { get; set; }
         [Required]
+        [Display(Name = "Апісанне")]
         public string GenreDescription { get; set; }
         public virtual ICollection<Composition> Compositions { get; set; }
         public Genre()

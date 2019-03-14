@@ -1,13 +1,13 @@
 ﻿@{
-    ViewBag.Title = "Панель администратора";
+    ViewBag.Title = "Панэль адміністратара";
 }
 
-<h2>Панель администратора</h2>
+<h2>Панэль адміністратара</h2>
 <hr />
 <div class="col-md-12">
     <div class="row">
         <div class="col-sm-6">
-            <div class="panel panel-primary">
+            <div class="panel panel-default">
                 <div class="panel-heading">Данные о пользователях</div>
                 <div class="panel-body">
                     <div class="list-group">
@@ -18,18 +18,17 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Библиотка</div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Бібліятэка</div>
                 <div class="panel-body">
                     <div class="list-group">
-                        @Html.ActionLink("Авторы", "GetAuthor", "Admin", new { @class = "list-group-item" })
+                        @Html.ActionLink("Аўтары", "GetAuthor", "Admin", new { @class = "list-group-item" })
                         @Html.ActionLink("Жанры", "GetGenre", "Admin", new { @class = "list-group-item" })
-                        @Html.ActionLink("Произведения", "GetComposition", "Admin", new { @class = "list-group-item" })
-                        @Html.ActionLink("Типы произведения", "GetTypeComposition", "Admin", new { @class = "list-group-item" })
+                        @Html.ActionLink("Творы", "GetComposition", "Admin", new { @class = "list-group-item" })
+                        @Html.ActionLink("Тыпы твораў", "GetTypeComposition", "Admin", new { @class = "list-group-item" })
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <p class="text-center">@Html.ActionLink("Помощь", "Help", "Admin")</p>
+    </div>    
 </div>

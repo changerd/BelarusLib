@@ -10,8 +10,10 @@ namespace BelarusLib.Models
     {        
         public int TypeCompositionId { get; set; }
         [Required]
+        [Display(Name ="Назва")]
         public string TypeCompositionName { get; set; }
         [Required]
+        [Display(Name = "Апісанне")]
         public string TypeCompositionDescription { get; set; }
         public virtual ICollection<Composition> Compositions { get; set; }
         public TypeComposition()
