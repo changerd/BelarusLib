@@ -301,6 +301,15 @@
     <Content Include="Views\Admin\EditTypeComposition.cshtml" />
     <Content Include="Views\Admin\GetAuthor.cshtml" />
     <Content Include="Views\Admin\CreateAuthor.cshtml" />
+    <Content Include="Views\Admin\DetailsAuthor.cshtml" />
+    <Content Include="Views\Admin\DeleteAuthor.cshtml" />
+    <Content Include="Views\Admin\EditAuthor.cshtml" />
+    <Content Include="Views\Admin\CreateComposition.cshtml" />
+    <Content Include="Views\Admin\GetComposition.cshtml" />
+    <Content Include="Views\Admin\DetailsComposition.cshtml" />
+    <Content Include="Views\Admin\DeleteComposition.cshtml" />
+    <Content Include="Views\Admin\EditComposition.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

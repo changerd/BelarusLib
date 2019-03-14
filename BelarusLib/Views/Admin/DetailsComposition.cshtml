@@ -1,0 +1,99 @@
+﻿@model BelarusLib.Models.Composition
+@using BelarusLib.Models
+
+@{
+    ViewBag.Title = "DetailsComposition";
+}
+
+<h2>DetailsComposition</h2>
+
+<div>
+    <h4>Composition</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompositionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompositionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompositionCover)
+        </dt>
+
+        @if (Model.CompositionCover != null)
+        {
+            <dd>
+                @Html.Raw("<img src=\"data:image/jpeg;base64," + Convert.ToBase64String(Model.CompositionCover) + "\" />")
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author.AuthorFullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Жанры")
+        </dt>
+
+        <dd>
+            <ul>
+            @foreach (Genre g in Model.Genres)
+            {
+                <li>@g.GenreName</li>
+            }
+            </ul>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeCompositionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeComposition.TypeCompositionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompositionDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompositionDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompositionLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompositionLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author.AuthorFullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeCompositionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeComposition.TypeCompositionName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditComposition", new { id = Model.CompositionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

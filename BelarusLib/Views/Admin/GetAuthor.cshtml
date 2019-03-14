@@ -13,19 +13,7 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.AuthorFullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AuthorBirthDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AuthorBirthDeath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AuthorBirthPlace)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AuthorBiography)
-        </th>
+        </th>        
         <th></th>
     </tr>
 
@@ -33,23 +21,11 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.AuthorFullName)
-        </td>
+        </td>        
         <td>
-            @Html.DisplayFor(modelItem => item.AuthorBirthDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AuthorBirthDeath)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AuthorBirthPlace)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AuthorBiography)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditCreateAuthor", new { id=item.AuthorId }) |
-            @Html.ActionLink("Details", "DetailsCreateAuthor", new { id=item.AuthorId }) |
-            @Html.ActionLink("Delete", "DeleteCreateAuthor", new { id=item.AuthorId })
+            @Html.ActionLink("Edit", "EditAuthor", new { id=item.AuthorId }) |
+            @Html.ActionLink("Details", "DetailsAuthor", new { id=item.AuthorId }) |
+            @Html.ActionLink("Delete", "DeleteAuthor", new { id=item.AuthorId })
         </td>
     </tr>
 }

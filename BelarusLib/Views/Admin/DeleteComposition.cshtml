@@ -1,0 +1,14 @@
+﻿@model BelarusLib.Models.Composition
+@{
+    ViewBag.Title = "Удаление произведения";
+}
+
+<h1>Вы точно хотите удалить произвдение: <b>@Model.CompositionName</b>?</h1>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <input type="submit" value="Удалить" class="btn btn-danger" />
+        <a class="btn btn-default" href="@Url.Action("GetComposition", "Admin")">Назад</a>
+    </div>
+}

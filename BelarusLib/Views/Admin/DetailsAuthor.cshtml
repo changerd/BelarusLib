@@ -1,0 +1,69 @@
+﻿@model BelarusLib.Models.Author
+
+@{
+    ViewBag.Title = "DetailsAuthor";
+}
+
+<h2>DetailsAuthor</h2>
+
+<div>
+    <h4>Author</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorFullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorFullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorPhoto)
+        </dt>
+
+        @if (Model.AuthorPhoto != null)
+        {
+            <dd>
+                @Html.Raw("<img src=\"data:image/jpeg;base64," + Convert.ToBase64String(Model.AuthorPhoto) + "\" />")
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorBirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorBirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorBirthDeath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorBirthDeath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorBirthPlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorBirthPlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorBiography)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorBiography)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditAuthor", new { id = Model.AuthorId }) |
+    @Html.ActionLink("Back to List", "GetAuthor")
+</p>

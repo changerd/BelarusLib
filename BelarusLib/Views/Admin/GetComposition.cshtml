@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BelarusLib.Models.Composition>
+@using BelarusLib.Models
+
+@{
+    ViewBag.Title = "GetComposition";
+}
+
+<h2>GetComposition</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateComposition")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompositionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeCompositionId)
+        </th>
+        <th>
+            @Html.DisplayName("Жанры")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompositionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author.AuthorFullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeComposition.TypeCompositionName)
+        </td>
+        <td>
+            @foreach (Genre g in item.Genres)
+            {
+                @g.GenreName   
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditComposition", new { id = item.CompositionId }) |
+            @Html.ActionLink("Details", "DetailsComposition", new { id = item.CompositionId }) |
+            @Html.ActionLink("Delete", "Composition", new { id = item.CompositionId })
+        </td>
+    </tr>
+}
+
+</table>

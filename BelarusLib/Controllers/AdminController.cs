@@ -220,7 +220,7 @@ namespace BelarusLib.Controllers
             }
             return (CreateAuthor(author));
         }
-        public ActionResult DetailsQuestion(int id)
+        public ActionResult DetailsAuthor(int id)
         {            
             var author = db.Authors.Find(id);
             if (author == null)
@@ -244,7 +244,7 @@ namespace BelarusLib.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("GetAuthor");
         }
-        public ActionResult EditQuestion(int id)
+        public ActionResult EditAuthor(int id)
         {
             var author = db.Authors.Find(id);
             if (author == null)
@@ -269,7 +269,125 @@ namespace BelarusLib.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("GetAuthor");
             }
-            return EditQuestion(author.AuthorId);
+            return EditAuthor(author.AuthorId);
+        }
+        public ActionResult GetComposition()
+        {
+            return View(db.Compositions.Include(a => a.Author).Include(t => t.TypeComposition).Include(g => g.Genres).ToList());
+        }
+        public ActionResult CreateComposition(Composition composition)
+        {
+            List<Genre> genres = db.Genres.ToList();
+            SelectList typecompostion = new SelectList(db.TypeCompositions, "TypeCompositionId", "TypeCompositionName");
+            SelectList author = new SelectList(db.Authors, "AuthorId", "AuthorFullName");
+            ViewBag.Genres = genres;
+            ViewBag.TypeComposition = typecompostion;
+            ViewBag.Author = author;
+            return View(composition);
+        }
+        [HttpPost]
+        public async Task<ActionResult> CreateComposition(Composition composition, int[] selectedGenres, HttpPostedFileBase uploadImage)
+        {
+            if (uploadImage != null)
+            {
+                byte[] imageData = null;
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+                composition.CompositionCover = imageData;
+            }
+            if (composition.CompositionCover == null)
+            {
+                ModelState.AddModelError("Photo", "Для произведения не выбрана обложка.");
+            }
+            if (selectedGenres != null)
+            {
+                foreach (var g in db.Genres.Where(g => selectedGenres.Contains(g.GenreId)))
+                {
+                    composition.Genres.Add(g);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("Genres", "Для произведения не выбран жанр.");
+            }
+            if (ModelState.IsValid)
+            {
+                db.Compositions.Add(composition);
+                await db.SaveChangesAsync();
+                return RedirectToAction("GetComposition");
+            }
+            return (CreateComposition(composition));
+        }
+        public ActionResult DetailsComposition(int id)
+        {
+            var composition = db.Compositions.Include(a => a.Author).Include(t => t.TypeComposition).Include(g => g.Genres).SingleOrDefault(i => i.CompositionId == id);
+            if (composition == null)
+                return HttpNotFound();
+            return View(composition);
+        }
+        public ActionResult DeleteComposition(int id)
+        {
+            var composition = db.Compositions.Find(id);
+            if (composition == null)
+                return HttpNotFound();
+            return View(composition);
+        }
+        [HttpPost, ActionName("DeleteComposition")]
+        public async Task<ActionResult> DeleteCompositionConfimed(int id)
+        {
+            var composition = db.Compositions.Find(id);
+            if (composition == null)
+                return HttpNotFound();
+            db.Compositions.Remove(composition);
+            await db.SaveChangesAsync();
+            return RedirectToAction("GetComposition");
+        }
+        public ActionResult EditComposition(int id)
+        {
+            List<Genre> genres = db.Genres.ToList();
+            SelectList typecompostion = new SelectList(db.TypeCompositions, "TypeCompositionId", "TypeCompositionName");
+            SelectList author = new SelectList(db.Authors, "AuthorId", "AuthorFullName");
+            ViewBag.Genres = genres;
+            ViewBag.TypeComposition = typecompostion;
+            ViewBag.Author = author;
+            var composition = db.Compositions.Find(id);
+            if (composition == null)
+                return HttpNotFound();
+            return View(composition);
+        }
+        [HttpPost]
+        public async Task<ActionResult> EditComposition(Composition composition, int[] selectedGenres, HttpPostedFileBase uploadImage)
+        {
+            if (uploadImage != null)
+            {
+                byte[] imageData = null;
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+                composition.CompositionCover = imageData;
+            }
+            composition.Genres.Clear();
+            if (selectedGenres != null)
+            {
+                foreach (var g in db.Genres.Where(g => selectedGenres.Contains(g.GenreId)))
+                {
+                    composition.Genres.Add(g);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("Genres", "Для произведения не выбран жанр.");
+            }
+            if (ModelState.IsValid)
+            {
+                db.Entry(composition).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("GetComposition");
+            }
+            return EditAuthor(composition.CompositionId);
         }
         public ActionResult GetGenre()
         {
