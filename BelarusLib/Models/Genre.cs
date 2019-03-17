@@ -15,6 +15,7 @@ namespace BelarusLib.Models
         public string GenreName { get; set; }
         [Required]
         [Display(Name = "Апісанне")]
+        [DataType(DataType.MultilineText)]
         public string GenreDescription { get; set; }
         public virtual ICollection<Composition> Compositions { get; set; }
         public Genre()

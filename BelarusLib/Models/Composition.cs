@@ -25,11 +25,7 @@ namespace BelarusLib.Models
         [Required]
         [Display(Name = "Аўтар")]
         public int AuthorId { get; set; }
-        public Author Author { get; set; }
-        [Required]
-        [Display(Name = "Тып твора")]
-        public int TypeCompositionId { get; set; }
-        public TypeComposition TypeComposition { get; set; }
+        public Author Author { get; set; }        
         public virtual ICollection<Genre> Genres { get; set; }
         public Composition()
         {

@@ -31,13 +31,10 @@ namespace BelarusLib.Migrations
                         CompositionDescription = c.String(nullable: false),
                         CompositionLink = c.String(nullable: false),
                         AuthorId = c.Int(nullable: false),
-                        TypeCompositionId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.CompositionId)
                 .ForeignKey("dbo.Authors", t => t.AuthorId, cascadeDelete: true)
-                .ForeignKey("dbo.TypeCompositions", t => t.TypeCompositionId, cascadeDelete: true)
-                .Index(t => t.AuthorId)
-                .Index(t => t.TypeCompositionId);
+                .Index(t => t.AuthorId);
             
             CreateTable(
                 "dbo.Genres",
@@ -48,16 +45,6 @@ namespace BelarusLib.Migrations
                         GenreDescription = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.GenreId);
-            
-            CreateTable(
-                "dbo.TypeCompositions",
-                c => new
-                    {
-                        TypeCompositionId = c.Int(nullable: false, identity: true),
-                        TypeCompositionName = c.String(nullable: false),
-                        TypeCompositionDescription = c.String(nullable: false),
-                    })
-                .PrimaryKey(t => t.TypeCompositionId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -151,7 +138,6 @@ namespace BelarusLib.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Compositions", "TypeCompositionId", "dbo.TypeCompositions");
             DropForeignKey("dbo.GenreCompositions", "Composition_CompositionId", "dbo.Compositions");
             DropForeignKey("dbo.GenreCompositions", "Genre_GenreId", "dbo.Genres");
             DropForeignKey("dbo.Compositions", "AuthorId", "dbo.Authors");
@@ -163,7 +149,6 @@ namespace BelarusLib.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Compositions", new[] { "TypeCompositionId" });
             DropIndex("dbo.Compositions", new[] { "AuthorId" });
             DropTable("dbo.GenreCompositions");
             DropTable("dbo.AspNetUserLogins");
@@ -171,7 +156,6 @@ namespace BelarusLib.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.TypeCompositions");
             DropTable("dbo.Genres");
             DropTable("dbo.Compositions");
             DropTable("dbo.Authors");

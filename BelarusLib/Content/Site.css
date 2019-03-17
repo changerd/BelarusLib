@@ -22,3 +22,6 @@ select,
 textarea {
     max-width: 280px;
 }
+.jumbotron {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Flag_of_Belarus_%281918%2C_1991%E2%80%931995%29.svg/1200px-Flag_of_Belarus_%281918%2C_1991%E2%80%931995%29.svg.png)
+}

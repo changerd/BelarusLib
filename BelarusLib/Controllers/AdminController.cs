@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace BelarusLib.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
@@ -273,15 +274,13 @@ namespace BelarusLib.Controllers
         }
         public ActionResult GetComposition()
         {
-            return View(db.Compositions.Include(a => a.Author).Include(t => t.TypeComposition).Include(g => g.Genres).ToList());
+            return View(db.Compositions.Include(a => a.Author).Include(g => g.Genres).ToList());
         }
         public ActionResult CreateComposition(Composition composition)
         {
-            List<Genre> genres = db.Genres.ToList();
-            SelectList typecompostion = new SelectList(db.TypeCompositions, "TypeCompositionId", "TypeCompositionName");
+            List<Genre> genres = db.Genres.ToList();            
             SelectList author = new SelectList(db.Authors, "AuthorId", "AuthorFullName");
-            ViewBag.Genres = genres;
-            ViewBag.TypeComposition = typecompostion;
+            ViewBag.Genres = genres;            
             ViewBag.Author = author;
             return View(composition);
         }
@@ -322,7 +321,7 @@ namespace BelarusLib.Controllers
         }
         public ActionResult DetailsComposition(int id)
         {
-            var composition = db.Compositions.Include(a => a.Author).Include(t => t.TypeComposition).Include(g => g.Genres).SingleOrDefault(i => i.CompositionId == id);
+            var composition = db.Compositions.Include(a => a.Author).Include(g => g.Genres).SingleOrDefault(i => i.CompositionId == id);
             if (composition == null)
                 return HttpNotFound();
             return View(composition);
@@ -346,11 +345,9 @@ namespace BelarusLib.Controllers
         }
         public ActionResult EditComposition(int id)
         {
-            List<Genre> genres = db.Genres.ToList();
-            SelectList typecompostion = new SelectList(db.TypeCompositions, "TypeCompositionId", "TypeCompositionName");
+            List<Genre> genres = db.Genres.ToList();            
             SelectList author = new SelectList(db.Authors, "AuthorId", "AuthorFullName");
-            ViewBag.Genres = genres;
-            ViewBag.TypeComposition = typecompostion;
+            ViewBag.Genres = genres;            
             ViewBag.Author = author;
             var composition = db.Compositions.Find(id);
             if (composition == null)
@@ -442,60 +439,6 @@ namespace BelarusLib.Controllers
                 return RedirectToAction("GetGenre");
             }
             return EditGenre(genre.GenreId);
-        }
-        public ActionResult GetTypeComposition()
-        {
-            return View(db.TypeCompositions.ToList());
-        }
-        public ActionResult CreateTypeComposition()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<ActionResult> CreateTypeComposition(TypeComposition typecomposition)
-        {
-            if (ModelState.IsValid)
-            {
-                db.TypeCompositions.Add(typecomposition);
-                await db.SaveChangesAsync();
-                return RedirectToAction("GetTypeComposition");
-            }
-            return (CreateGenre());
-        }
-        public ActionResult DeleteTypeComposition(int id)
-        {
-            var typecomposition = db.TypeCompositions.Find(id);
-            if (typecomposition == null)
-                return HttpNotFound();
-            return View(typecomposition);
-        }
-        [HttpPost, ActionName("DeleteTypeComposition")]
-        public async Task<ActionResult> DeleteTypeCompositionConfimed(int id)
-        {
-            var typecomposition = db.TypeCompositions.Find(id);
-            if (typecomposition == null)
-                return HttpNotFound();
-            db.TypeCompositions.Remove(typecomposition);
-            await db.SaveChangesAsync();
-            return RedirectToAction("GetTypeComposition");
-        }
-        public ActionResult EditTypeComposition(int id)
-        {
-            var typecomposition = db.TypeCompositions.Find(id);
-            if (typecomposition == null)
-                return HttpNotFound();
-            return View(typecomposition);
-        }
-        [HttpPost]
-        public async Task<ActionResult> EditTypeComposition(TypeComposition typecomposition)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(typecomposition).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("GetTypeComposition");
-            }
-            return EditGenre(typecomposition.TypeCompositionId);
-        }
+        }        
     }
 }

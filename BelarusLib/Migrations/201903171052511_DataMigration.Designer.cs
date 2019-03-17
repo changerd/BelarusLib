@@ -13,7 +13,7 @@ namespace BelarusLib.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201903131937529_DataMigration"; }
+            get { return "201903171052511_DataMigration"; }
         }
         
         string IMigrationMetadata.Source
