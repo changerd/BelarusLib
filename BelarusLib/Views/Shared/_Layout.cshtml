@@ -23,6 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Творы", "Compositions", "Home")</li>
                     <li>@Html.ActionLink("Аб праграме", "About", "Home")</li>
+                    <li>@Html.ActionLink("Дапамога", "About", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -33,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – BelarusLib</p>
+            <p class="text-center">&copy; @DateTime.Now.Year – BelarusLib</p>
         </footer>
     </div>
 
