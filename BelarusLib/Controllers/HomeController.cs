@@ -24,6 +24,10 @@ namespace BelarusLib.Controllers
             ViewBag.Message = "Your application description page.";
             return View();
         }
+        public ActionResult Help()
+        {
+            return View();
+        }
         public ActionResult Author(int id)
         {
             var author = db.Authors.Include(c => c.Compositions).SingleOrDefault(i => i.AuthorId == id);            

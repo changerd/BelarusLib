@@ -439,6 +439,10 @@ namespace BelarusLib.Controllers
                 return RedirectToAction("GetGenre");
             }
             return EditGenre(genre.GenreId);
-        }        
+        }  
+        public ActionResult Help()
+        {
+            return View();
+        }
     }
 }
