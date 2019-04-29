@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -13,7 +14,12 @@ namespace BelarusLib.Models
     public class ApplicationUser : IdentityUser
     {
         public string FullName { get; set; }
-        public DateTime? Birth { get; set; }               
+        public DateTime? Birth { get; set; }
+        public virtual ICollection<Result> Results { get; set; }        
+        public ApplicationUser()
+        {
+            Results = new List<Result>();            
+        }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
