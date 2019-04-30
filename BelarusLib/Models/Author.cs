@@ -30,9 +30,13 @@ namespace BelarusLib.Models
         [Display(Name = "Біяграфія")]
         public string AuthorBiography { get; set; }
         public virtual ICollection<Composition> Compositions { get; set; }
+        public virtual ICollection<Audio> Audios { get; set; }
+        public virtual ICollection<Video> Videos { get; set; }
         public Author()
         {
             Compositions = new List<Composition>();
+            Audios = new List<Audio>();
+            Videos = new List<Video>();
         }
     }
 }
