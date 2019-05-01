@@ -19,6 +19,7 @@ namespace BelarusLib.Models
         public DbSet<Author> Authors { get; set; }
         public DbSet<Choice> Choices { get; set; }
         public DbSet<Composition> Compositions { get; set; }
+        public DbSet<Fact> Facts { get; set; }
         public DbSet<Genre> Genres { get; set; }        
         public DbSet<Question> Questions { get; set; }
         public DbSet<Quiz> Quizzes { get; set; }

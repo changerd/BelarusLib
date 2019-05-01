@@ -1,0 +1,16 @@
+﻿@model BelarusLib.Models.Fact
+
+@{
+    ViewBag.Title = "Выдаленне факта";
+}
+
+<h1>Вы дакладна хочаце выдаліць факт: <b>@Model.FactText</b>?</h1>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <input type="submit" value="Выдаліць" class="btn btn-danger" />
+        <a class="btn btn-default" href="@Url.Action("DetailsAuthor", "Admin", new { id = ViewBag.AuthorId })">Назад</a>
+    </div>
+}
+

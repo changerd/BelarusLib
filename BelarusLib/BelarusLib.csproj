@@ -213,6 +213,14 @@
     <Compile Include="Migrations\201904291405087_DataMigration1.Designer.cs">
       <DependentUpon>201904291405087_DataMigration1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904300949580_DataMigration2.cs" />
+    <Compile Include="Migrations\201904300949580_DataMigration2.Designer.cs">
+      <DependentUpon>201904300949580_DataMigration2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904301411522_DataMigration3.cs" />
+    <Compile Include="Migrations\201904301411522_DataMigration3.Designer.cs">
+      <DependentUpon>201904301411522_DataMigration3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -222,6 +230,7 @@
     <Compile Include="Models\Composition.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Fact.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Quiz.cs" />
@@ -370,6 +379,19 @@
     <Content Include="Views\Admin\EditQuiz.cshtml" />
     <Content Include="Views\Admin\GetQuiz.cshtml" />
     <Content Include="Views\Admin\ResultQuiz.cshtml" />
+    <Content Include="Views\Admin\CreateFact.cshtml" />
+    <Content Include="Views\Admin\DeleteFact.cshtml" />
+    <Content Include="Views\Admin\EditFact.cshtml" />
+    <Content Include="Views\Admin\GetAudio.cshtml" />
+    <Content Include="Views\Admin\CreateAudio.cshtml" />
+    <Content Include="Views\Admin\DeleteAudio.cshtml" />
+    <Content Include="Views\Admin\EditAudio.cshtml" />
+    <Content Include="Views\Admin\DetailsAudio.cshtml" />
+    <Content Include="Views\Admin\GetVideo.cshtml" />
+    <Content Include="Views\Admin\CreateVideo.cshtml" />
+    <Content Include="Views\Admin\DeleteVideo.cshtml" />
+    <Content Include="Views\Admin\EditVideo.cshtml" />
+    <Content Include="Views\Admin\DetailsVideo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -382,6 +404,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904291405087_DataMigration1.resx">
       <DependentUpon>201904291405087_DataMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904300949580_DataMigration2.resx">
+      <DependentUpon>201904300949580_DataMigration2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904301411522_DataMigration3.resx">
+      <DependentUpon>201904301411522_DataMigration3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

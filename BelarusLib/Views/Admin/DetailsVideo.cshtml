@@ -1,0 +1,48 @@
+﻿@model BelarusLib.Models.Video
+
+@{
+    ViewBag.Title = "Больш падрабязна пра відэазапісы";
+}
+
+<h2>Больш падрабязна пра відэазапісы</h2>
+
+<div>    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author.AuthorFullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoLink)
+        </dd>
+
+        <dt>
+
+        </dt>
+
+        <dd>
+            <iframe width="560" height="315" src=@Model.VideoLink frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Рэдагаваць", "EditVideo", new { id = Model.VideoId }) |
+    @Html.ActionLink("Назад", "GetVideo")
+</p>

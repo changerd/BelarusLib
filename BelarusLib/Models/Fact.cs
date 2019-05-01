@@ -6,16 +6,12 @@ using System.Web;
 
 namespace BelarusLib.Models
 {
-    public class Audio
+    public class Fact
     {
-        public int AudioId { get; set; }
+        public int FactId { get; set; }
         [Required]
-        [Display(Name = "Назва")]
-        public string AudioName { get; set; }
-        [Required]
-        [Display(Name = "Спасылка")]
-        [DataType(DataType.MultilineText)]
-        public string AudioLink { get; set; }
+        [Display(Name = "Факт")]
+        public string FactText { get; set; }
         [Required]
         [Display(Name = "Аўтар")]
         public int AuthorId { get; set; }

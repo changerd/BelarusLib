@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BelarusLib.Models.Video>
+
+@{
+    ViewBag.Title = "Відэазапісы";
+}
+
+<h2>Відэазапісы</h2>
+
+<p>
+    @Html.ActionLink("Стварыць", "CreateVideo")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VideoName)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoName)
+        </td>        
+        <td>
+            @Html.DisplayFor(modelItem => item.Author.AuthorFullName)
+        </td>
+        <td>
+            @Html.ActionLink("Рэдагаваць", "EditVideo", new { id=item.VideoId }) |
+            @Html.ActionLink("Больш падрабязна", "DetailsVideo", new { id=item.VideoId }) |
+            @Html.ActionLink("Выдаліць", "DeleteVideo", new { id=item.VideoId })
+        </td>
+    </tr>
+}
+
+</table>

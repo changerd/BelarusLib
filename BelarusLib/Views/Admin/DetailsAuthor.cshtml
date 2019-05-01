@@ -1,12 +1,18 @@
 ﻿@model BelarusLib.Models.Author
 
 @{
-    ViewBag.Title = "Аўтар";
+    ViewBag.Title = "Аўтар";    
 }
 
 <h2>Аўтар</h2>
 
-<div>    
+<div>
+    <hr />
+    <div class="row">
+        <a class="btn btn-primary" href=@Url.Action("CreateFact", new { aid = Model.AuthorId })>Дадаць факт</a>
+        <a class="btn btn-primary" href=@Url.Action("Рэдагаваць", "EditAuthor", new { id = Model.AuthorId })>Рэдагаваць</a>
+        <a class="btn btn-primary" href=@Url.Action("GetAuthor")>Назад</a>        
+    </div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -62,7 +68,28 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Рэдагаваць", "EditAuthor", new { id = Model.AuthorId }) |
-    @Html.ActionLink("Назад", "GetAuthor")
-</p>
+
+<h3>Фактi</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Факт")
+        </th>        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Facts)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FactText)
+            </td>            
+            <td>
+                @Html.ActionLink("Редатировать", "EditFact", new { id = item.FactId }) |
+                @Html.ActionLink("Удалить", "DeleteFact", new { id = item.FactId })
+            </td>
+        </tr>
+    }
+
+</table>

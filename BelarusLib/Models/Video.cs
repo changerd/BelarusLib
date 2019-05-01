@@ -14,6 +14,7 @@ namespace BelarusLib.Models
         public string VideoName { get; set; }
         [Required]
         [Display(Name = "Спасылка")]
+        [DataType(DataType.MultilineText)]
         public string VideoLink { get; set; }
         [Required]
         [Display(Name = "Аўтар")]

@@ -272,6 +272,59 @@ namespace BelarusLib.Controllers
             }
             return EditAuthor(author.AuthorId);
         }
+        public ActionResult CreateFact(int aid)
+        {
+            aid = db.Authors.Find(aid).AuthorId;
+            ViewBag.AuthorId = aid;
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> CreateFact(Fact fact, int AuthorId)
+        {
+            fact.AuthorId = AuthorId;
+            if (ModelState.IsValid)
+            {
+                db.Facts.Add(fact);                
+                await db.SaveChangesAsync();
+                return RedirectToAction("DetailsAuthor", new { id = AuthorId });
+            }
+            return (CreateFact(fact.AuthorId));
+        }
+        public ActionResult DeleteFact(int id)
+        {
+            var fact = db.Facts.Find(id);
+            if (fact == null)
+                return HttpNotFound();
+            return View(fact);
+        }
+        [HttpPost, ActionName("DeleteFact")]
+        public async Task<ActionResult> DeleteFactConfimed(int id)
+        {
+            var fact = db.Facts.Find(id);
+            if (fact == null)
+                return HttpNotFound();
+            db.Facts.Remove(fact);
+            await db.SaveChangesAsync();
+            return RedirectToAction("DetailsAuthor", new { id = fact.AuthorId });
+        }
+        public ActionResult EditFact(int id)
+        {
+            var fact = db.Facts.Find(id);
+            if (fact == null)
+                return HttpNotFound();
+            return View(fact);
+        }
+        [HttpPost]
+        public async Task<ActionResult> EditFact(Fact fact)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(fact).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("DetailsAuthor", new { id = fact.AuthorId });
+            }
+            return EditFact(fact.FactId);
+        }
         public ActionResult GetComposition()
         {
             return View(db.Compositions.Include(a => a.Author).Include(g => g.Genres).ToList());
@@ -440,6 +493,137 @@ namespace BelarusLib.Controllers
             }
             return EditGenre(genre.GenreId);
         }
+        public ActionResult GetAudio()
+        {
+            return View(db.Audios.Include(a => a.Author).ToList());
+        }
+        public ActionResult DetailsAudio(int id)
+        {
+            var audio = db.Audios.Include(a => a.Author).SingleOrDefault(i => i.AudioId == id);
+            if (audio == null)
+                return HttpNotFound();
+            return View(audio);
+        }
+        public ActionResult CreateAudio()
+        {
+            SelectList author = new SelectList(db.Authors, "AuthorId", "AuthorFullName");            
+            ViewBag.Author = author;
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> CreateAudio(Audio audio)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Audios.Add(audio);
+                await db.SaveChangesAsync();
+                return RedirectToAction("GetAudio");
+            }
+            return (CreateAudio());
+        }
+        public ActionResult DeleteAudio(int id)
+        {
+            var audio = db.Audios.Find(id);
+            if (audio == null)
+                return HttpNotFound();
+            return View(audio);
+        }
+        [HttpPost, ActionName("DeleteAudio")]
+        public async Task<ActionResult> DeleteAudioConfimed(int id)
+        {
+            var audio = db.Audios.Find(id);
+            if (audio == null)
+                return HttpNotFound();
+            db.Audios.Remove(audio);
+            await db.SaveChangesAsync();
+            return RedirectToAction("GetAudio");
+        }
+        public ActionResult EditAudio(int id)
+        {
+            SelectList author = new SelectList(db.Authors, "AuthorId", "AuthorFullName");
+            ViewBag.Author = author;
+            var audio = db.Audios.Find(id);
+            if (audio == null)
+                return HttpNotFound();
+            return View(audio);
+        }
+        [HttpPost]
+        public async Task<ActionResult> EditAudio(Audio audio)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(audio).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("GetAudio");
+            }
+            return EditAudio(audio.AudioId);
+        }
+        public ActionResult GetVideo()
+        {
+            return View(db.Videos.Include(a => a.Author).ToList());
+        }
+        public ActionResult DetailsVideo(int id)
+        {
+            var video = db.Videos.Include(a => a.Author).SingleOrDefault(i => i.VideoId == id);
+            if (video == null)
+                return HttpNotFound();
+            return View(video);
+        }
+        public ActionResult CreateVideo()
+        {
+            SelectList author = new SelectList(db.Authors, "AuthorId", "AuthorFullName");
+            ViewBag.Author = author;
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> CreateVideo(Video video)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Videos.Add(video);
+                await db.SaveChangesAsync();
+                return RedirectToAction("GetVideo");
+            }
+            return (CreateAudio());
+        }
+        public ActionResult DeleteVideo(int id)
+        {
+            var video = db.Videos.Find(id);
+            if (video == null)
+                return HttpNotFound();
+            return View(video);
+        }
+        [HttpPost, ActionName("DeleteVideo")]
+        public async Task<ActionResult> DeleteVideoConfimed(int id)
+        {
+            var video = db.Videos.Find(id);
+            if (video == null)
+                return HttpNotFound();
+            db.Videos.Remove(video);
+            await db.SaveChangesAsync();
+            return RedirectToAction("GetVideo");
+        }
+        public ActionResult EditVideo(int id)
+        {
+            SelectList author = new SelectList(db.Authors, "AuthorId", "AuthorFullName");
+            ViewBag.Author = author;
+            var video = db.Videos.Find(id);
+            if (video == null)
+                return HttpNotFound();
+            return View(video);
+        }
+        [HttpPost]
+        public async Task<ActionResult> EditVideo(Video video)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(video).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("GetVideo");
+            }
+            return EditAudio(video.VideoId);
+        }
+        //--------------------------------------------------------------------------------------------------------------------------------------------
         public ActionResult CreateQuiz()
         {
             return View();

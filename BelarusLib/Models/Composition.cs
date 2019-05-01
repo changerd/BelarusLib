@@ -21,6 +21,7 @@ namespace BelarusLib.Models
         public string CompositionDescription { get; set; }
         [Required]
         [Display(Name = "Спасылка")]
+        [DataType(DataType.MultilineText)]
         public string CompositionLink { get; set; }
         [Required]
         [Display(Name = "Аўтар")]

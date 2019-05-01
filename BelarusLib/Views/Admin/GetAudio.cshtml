@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BelarusLib.Models.Audio>
+
+@{
+    ViewBag.Title = "Аўдыёзапісы";
+}
+
+<h2>Аўдыёзапісы</h2>
+
+<p>
+    @Html.ActionLink("Стварыць", "CreateAudio")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AudioName)
+        </th>
+
+        <th>
+            @Html.DisplayName("Аўтар")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AudioName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.AuthorFullName)
+            </td>
+            <td>
+                @Html.ActionLink("Рэдагаваць", "EditAudio", new { id = item.AudioId }) |
+                @Html.ActionLink("Больш падрабязна", "DetailsAudio", new { id = item.AudioId }) |
+                @Html.ActionLink("Выдаліць", "DeleteAudio", new { id = item.AudioId })
+            </td>
+        </tr>
+    }
+
+</table>
