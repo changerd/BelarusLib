@@ -48,7 +48,7 @@ namespace BelarusLib.Controllers
         }
         public ActionResult Composition(int id)
         {
-            var composition = db.Compositions.Include(a => a.Author).Include(g => g.Genres).SingleOrDefault(i => i.AuthorId == id);
+            var composition = db.Compositions.Include(a => a.Author).Include(g => g.Genres).SingleOrDefault(i => i.CompositionId == id);
             if (composition == null)
                 return HttpNotFound();
             return View(composition);
