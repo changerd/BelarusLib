@@ -5,48 +5,57 @@
     ViewBag.Title = "Творы";
 }
 
-<h2>Творы</h2>
 
-<p>
-    @Html.ActionLink("Стварць", "CreateComposition")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CompositionName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AuthorId)
-        </th>        
-        <th>
-            @Html.DisplayName("Жанры")
-        </th>
-        <th></th>
-    </tr>
+<section>
+    <div class="container">
+        <h2>Творы</h2>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompositionName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author.AuthorFullName)
-            </td>            
-            <td>
-                <ul>
-                    @foreach (Genre g in item.Genres)
-                    {
-                        <li>@g.GenreName</li>
-                    }
-                </ul>
-            </td>
-            <td>
-                @Html.ActionLink("Рэдагаваць", "EditComposition", new { id = item.CompositionId }) |
-                @Html.ActionLink("Больш падрабязна", "DetailsComposition", new { id = item.CompositionId }) |
-                @Html.ActionLink("Выдалiць", "DeleteComposition", new { id = item.CompositionId })
-            </td>
-        </tr>
-    }
+        <p>
+            @Html.ActionLink("Стварць", "CreateComposition")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompositionName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AuthorId)
+                </th>
+                <th>
+                    @Html.DisplayName("Жанры")
+                </th>
+                <th></th>
+            </tr>
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompositionName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Author.AuthorFullName)
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (Genre g in item.Genres)
+                            {
+                                <li>@g.GenreName</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Рэдагаваць", "EditComposition", new { id = item.CompositionId }) |
+                        @Html.ActionLink("Больш падрабязна", "DetailsComposition", new { id = item.CompositionId }) |
+                        @Html.ActionLink("Выдалiць", "DeleteComposition", new { id = item.CompositionId })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <p>
+            <a class="btn btn-dark" href=@Url.Action("Index")>Назад</a>
+        </p>
+    </div>
+</section>

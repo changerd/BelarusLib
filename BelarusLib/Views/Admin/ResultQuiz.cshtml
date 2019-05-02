@@ -1,47 +1,53 @@
 ﻿@model IEnumerable<BelarusLib.Models.Result>
 
 @{
-    ViewBag.Title = "Результаты";
+    ViewBag.Title = "Вынікі тэсту";
 }
 
-<h2>Результаты викторины: @ViewBag.Name</h2>
+<section>
+    <div class="btn btn-dark">
+        <h2>Вынікі тэсту: @ViewBag.Name</h2>
 
-<hr />
+        <hr />
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Логин")
-        </th>
-        <th>
-            @Html.DisplayName("ФИО")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResultDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResultScore)
-        </th>
-    </tr>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Лагiн")
+                </th>
+                <th>
+                    @Html.DisplayName("Імя")
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ResultDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ResultScore)
+                </th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ResultDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ResultScore)
-        </td>
-    </tr>
-}
-</table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ResultDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ResultScore)
+                    </td>
+                </tr>
+            }
+        </table>
 
-<p>
-    <a class="btn btn-primary" href=@Url.Action("DetailsQuiz", new { id = ViewBag.Id})>Назад</a>
-</p>
+        <p>
+            <a class="btn btn-dark" href=@Url.Action("DetailsQuiz", new { id = ViewBag.Id})>Назад</a>
+        </p>
+    </div>
+</section>
+

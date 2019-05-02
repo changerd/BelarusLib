@@ -3,44 +3,48 @@
 @using BelarusLib.Models
 
 @{
-    ViewBag.Title = "Роли";
+    ViewBag.Title = "Ролi";
 }
 
-<h2>Роли</h2>
+<section>
+    <div class="container">
+        <h2>Роли</h2>
 
-<p>
-    @Html.ActionLink("Создать новую роль", "CreateRole")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Название
-        </th>
-        <th>
-            Пользователи
-        </th>
-        <th></th>
-    </tr>
+        <p>
+            @Html.ActionLink("Стварыць новую ролю", "CreateRole")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Название
+                </th>
+                <th>
+                    Пользователи
+                </th>
+                <th></th>
+            </tr>
 
-    @foreach (ApplicationRole item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @string.Join(", ", item.Users.Select(x => Html.GetUserName(x.UserId)))
-            </td>
-            <td>
-                @Html.ActionLink("Присвоить", "GiveRole", new { id = item.Id }) |
-                @Html.ActionLink("Редактировать", "EditRole", new { id = item.Id }) |
-                @Html.ActionLink("Удалить", "DeleteRole", new { id = item.Id })
-            </td>
-        </tr>
-    }
+            @foreach (ApplicationRole item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @string.Join(", ", item.Users.Select(x => Html.GetUserName(x.UserId)))
+                    </td>
+                    <td>
+                        @Html.ActionLink("Прысвоіць", "GiveRole", new { id = item.Id }) |
+                        @Html.ActionLink("Рэдагаваць", "EditRole", new { id = item.Id }) |
+                        @Html.ActionLink("Выдаліць", "DeleteRole", new { id = item.Id })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
 
-<div>
-    @Html.ActionLink("Назад", "Index")
-</div>
+        <p>
+            <a class="btn btn-dark" href=@Url.Action("Index")>Назад</a>
+        </p>
+    </div>
+</section>

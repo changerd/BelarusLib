@@ -1,47 +1,44 @@
 ﻿@{
     ViewBag.Title = "Панэль адміністратара";
 }
-
-<h2>Панэль адміністратара</h2>
-<hr />
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">Данные о пользователях</div>
-                <div class="panel-body">
-                    <div class="list-group">
-                        @Html.ActionLink("Роли", "GetRole", "Admin", new { @class = "list-group-item" })
-                        @Html.ActionLink("Пользователи", "GetUser", "Admin", new { @class = "list-group-item" })
+<section>
+    <div class="container">
+        <h2>Панэль адміністратара</h2>
+        <hr />
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-header">Дадзеныя пра карыстачах</div>
+                        <div class="list-group">
+                            @Html.ActionLink("Ролі", "GetRole", "Admin", new { @class = "list-group-item list-group-item-action" })
+                            @Html.ActionLink("Карыстальнікі", "GetUser", "Admin", new { @class = "list-group-item list-group-item-action" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-header">Бібліятэка</div>
+                        <div class="list-group">
+                            @Html.ActionLink("Аўтары", "GetAuthor", "Admin", new { @class = "list-group-item list-group-item-action" })
+                            @Html.ActionLink("Жанры", "GetGenre", "Admin", new { @class = "list-group-item list-group-item-action" })
+                            @Html.ActionLink("Творы", "GetComposition", "Admin", new { @class = "list-group-item list-group-item-action" })
+                            @Html.ActionLink("Аўдыёзапісы", "GetAudio", "Admin", new { @class = "list-group-item list-group-item-action" })
+                            @Html.ActionLink("Відэазапісы", "GetVideo", "Admin", new { @class = "list-group-item list-group-item-action" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-header">Тэсты</div>
+                        <div class="list-group">
+                            @Html.ActionLink("Стварыць тэст", "CreateQuiz", "Admin", new { @class = "list-group-item list-group-item-action" })
+                            @Html.ActionLink("Прагляд тэстаў", "GetQuiz", "Admin", new { @class = "list-group-item list-group-item-action" })
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">Бібліятэка</div>
-                <div class="panel-body">
-                    <div class="list-group">
-                        @Html.ActionLink("Аўтары", "GetAuthor", "Admin", new { @class = "list-group-item" })
-                        @Html.ActionLink("Жанры", "GetGenre", "Admin", new { @class = "list-group-item" })
-                        @Html.ActionLink("Творы", "GetComposition", "Admin", new { @class = "list-group-item" })
-                        @Html.ActionLink("Аўдыёзапісы", "GetAudio", "Admin", new { @class = "list-group-item" })
-                        @Html.ActionLink("Відэазапісы", "GetVideo", "Admin", new { @class = "list-group-item" })
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">Викторины</div>
-                <div class="panel-body">
-                    <div class="list-group">
-                        @Html.ActionLink("Создать викторину", "CreateQuiz", "Admin", new { @class = "list-group-item" })
-                        @Html.ActionLink("Просмотр викторин", "GetQuiz", "Admin", new { @class = "list-group-item" })
-                    </div>
-                </div>
-            </div>
+            <p class="text-center">@Html.ActionLink("Дапамога", "Help", "Admin")</p>
         </div>
     </div>
-    <p class="text-center">@Html.ActionLink("Помощь", "Help", "Admin")</p>
-</div>
+</section>

@@ -1,49 +1,54 @@
 ﻿@model BelarusLib.Models.Audio
 
 @{
-    ViewBag.Title = "Больш падрабязна пра аўдыёзапісы";
+    ViewBag.Title = "Аўдыёзапіс";
 }
 
-<h2>Больш падрабязна пра аўдыёзапісы</h2>
+<section>
+    <div class="container">
+        <h2>Аўдыёзапіс</h2>
 
-<div>    
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AudioName)
-        </dt>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.AudioName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AudioName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.AudioName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorId)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.AuthorId)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Author.AuthorFullName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Author.AuthorFullName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AudioLink)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.AudioLink)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AudioLink)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.AudioLink)
+                </dd>
 
-        <dt>
+                <dt>
 
-        </dt>
+                </dt>
 
-        <dd>
-            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src=@Model.AudioLink></iframe>
-        </dd>
+                <dd>
+                    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src=@Model.AudioLink></iframe>
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Рэдагаваць", "EditAudio", new { id = Model.AudioId }) |
-    @Html.ActionLink("Назад", "GetAudio")
-</p>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Рэдагаваць", "EditAudio", new { id = Model.AudioId }, htmlAttributes: new { @class = "btn btn-dark" })
+            @Html.ActionLink("Назад", "GetAudio", "Admin", htmlAttributes: new { @class = "btn btn-dark" })
+        </p>
+    </div>
+</section>
+

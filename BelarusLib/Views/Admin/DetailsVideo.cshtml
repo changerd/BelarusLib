@@ -1,48 +1,53 @@
 ﻿@model BelarusLib.Models.Video
 
 @{
-    ViewBag.Title = "Больш падрабязна пра відэазапісы";
+    ViewBag.Title = "Відэазапіс";
 }
 
-<h2>Больш падрабязна пра відэазапісы</h2>
+<section>
+    <div class="container">
+        <h2>Відэазапіс</h2>
 
-<div>    
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoName)
-        </dt>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.VideoName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.VideoName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.VideoName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorId)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.AuthorId)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Author.AuthorFullName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Author.AuthorFullName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoLink)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.VideoLink)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.VideoLink)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.VideoLink)
+                </dd>
 
-        <dt>
+                <dt>
 
-        </dt>
+                </dt>
 
-        <dd>
-            <iframe width="560" height="315" src=@Model.VideoLink frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </dd>
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Рэдагаваць", "EditVideo", new { id = Model.VideoId }) |
-    @Html.ActionLink("Назад", "GetVideo")
-</p>
+                <dd>
+                    <iframe width="560" height="315" src=@Model.VideoLink frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </dd>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Рэдагаваць", "EditVideo", new { id = Model.VideoId }, htmlAttributes: new { @class = "btn btn-dark" })
+            @Html.ActionLink("Назад", "GetVideo", "Admin", htmlAttributes: new { @class = "btn btn-dark" })
+        </p>
+    </div>
+</section>
+

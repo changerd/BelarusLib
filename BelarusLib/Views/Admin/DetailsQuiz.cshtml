@@ -2,90 +2,95 @@
 @using BelarusLib.Models
 
 @{
-    ViewBag.Title = "Викторина: " + Model.QuizName;
+    ViewBag.Title = "Тэст: " + Model.QuizName;
     ApplicationDbContext db = new ApplicationDbContext();
     var Questions = db.Questions.Where(q => q.QuizId == Model.QuizId);
 }
 
-<h2>Викторина</h2>
+<section>
+    <div class="container">
+        <h2>Тэст</h2>
 
-<div>
-    <hr />    
-    <div class="row">
-        <a class="btn btn-primary" href=@Url.Action("EditQuiz", new { id = Model.QuizId })>Редактировать</a>
-        <a class="btn btn-primary" href=@Url.Action("CreateQuestion", new { qid = Model.QuizId })>Создать вопрос</a>        
-        <a class="btn btn-primary" href=@Url.Action("ResultQuiz", new { id = Model.QuizId })>Результаты</a>
-        <a class="btn btn-default" href=@Url.Action("GetQuiz")>Назад</a>
+        <div>
+            <hr />
+            <div class="row">
+                <a class="btn btn-dark" href=@Url.Action("EditQuiz", new { id = Model.QuizId })>Рэдагаваць</a>
+                <a class="btn btn-dark" href=@Url.Action("CreateQuestion", new { qid = Model.QuizId })>Стварыць пытанне</a>
+                <a class="btn btn-dark" href=@Url.Action("ResultQuiz", new { id = Model.QuizId })>Вынікі</a>
+                <a class="btn btn-dark" href=@Url.Action("GetQuiz")>Назад</a>
+            </div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.QuizName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.QuizName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.QuizDuration)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.QuizDuration)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.QuizDescription)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.QuizDescription)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.QuizIsPrivate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.QuizIsPrivate)
+                </dd>
+            </dl>
+        </div>
+
+        <h3>Пытанні</h3>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Тэкст")
+                </th>
+                <th>
+                    @Html.DisplayName("Апісанне")
+                </th>
+                <th>
+                    @Html.DisplayName("Адказ")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Questions)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionAnswer)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Больш падрабязна", "DetailsQuestion", new { id = item.QuestionId }) |
+                        @Html.ActionLink("Выдаліць", "DeleteQuestion", new { id = item.QuestionId })
+                    </td>
+                </tr>
+            }
+
+        </table>
     </div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.QuizName)
-        </dt>
+</section>
 
-        <dd>
-            @Html.DisplayFor(model => model.QuizName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.QuizDuration)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QuizDuration)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.QuizDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QuizDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.QuizIsPrivate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QuizIsPrivate)
-        </dd>
-    </dl>
-</div>
-
-<h3>Вопросы</h3>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Текст")
-        </th>
-        <th>
-            @Html.DisplayName("Описание")
-        </th>
-        <th>
-            @Html.DisplayName("Ответ")
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Questions)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuestionText)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuestionDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuestionAnswer)
-            </td>
-            <td>
-                @Html.ActionLink("Подробнее", "DetailsQuestion", new { id = item.QuestionId }) |
-                @Html.ActionLink("Удалить", "DeleteQuestion", new { id = item.QuestionId })
-            </td>
-        </tr>
-    }
-
-</table>

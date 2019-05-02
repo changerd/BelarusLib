@@ -1,80 +1,82 @@
 ﻿@model BelarusLib.Models.Question
 
 @{
-    ViewBag.Title = "Редактирование вопроса";
+    ViewBag.Title = "Рэдагаванне пытання";
 }
 
-<h2>Редактирование вопроса</h2>
+<section>
+    <div class="container">
+        <h2>Рэдагаванне пытання</h2>
 
-@using (Html.BeginForm("EditQuestion", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
+        @using (Html.BeginForm("EditQuestion", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.QuestionId)
-        @Html.HiddenFor(model => model.QuizId)
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.QuestionId)
+                @Html.HiddenFor(model => model.QuizId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuestionText, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuestionText, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QuestionText, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuestionAnswer, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuestionAnswer, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QuestionAnswer, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuestionDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuestionDescription, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QuestionDescription, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.QuizId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.QuizId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.QuizId, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        <div class="form-group">
-            @Html.Label("Изображение", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @if (Model.QuestionImage != null)
-                {
-                    @Html.Raw("<img src=\"data:image/jpeg;base64," + Convert.ToBase64String(Model.QuestionImage) + "\" />")
-                    <br />
-                }
-                <input accept="image/jpeg,image/png" type="file" name="uploadQuestionImage" />
-                <div>
-                    <input type="checkbox" name="deleteQuestionImage" />
-                    Удалить изображение
+                <div class="form-group">
+                    @Html.LabelFor(model => model.QuestionText, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.QuestionText, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.QuestionText, "", new { @class = "text-danger" })
+                    </div>
                 </div>
 
+                <div class="form-group">
+                    @Html.LabelFor(model => model.QuestionAnswer, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.QuestionAnswer, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.QuestionAnswer, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.QuestionDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.QuestionDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.QuestionDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.QuizId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.QuizId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.QuizId, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+                <div class="form-group">
+                    @Html.Label("Малюнак", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (Model.QuestionImage != null)
+                        {
+                            @Html.Raw("<img src=\"data:image/jpeg;base64," + Convert.ToBase64String(Model.QuestionImage) + "\" />")
+                            <br />
+                        }
+                        <input accept="image/jpeg,image/png" type="file" name="uploadQuestionImage" />
+                        <div>
+                            <input type="checkbox" name="deleteQuestionImage" />
+                            Выдалiць малюнак
+                        </div>
 
 
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Захаваць" class="btn btn-dark" />
+                        @Html.ActionLink("Назад", "DetailsQuestion", new { id = Model.QuestionId }, htmlAttributes: new { @class = "btn btn-dark" })
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Сохранить" class="btn btn-primary" />
-            </div>
-        </div>
+        }
     </div>
-}
+</section>
 
-<div>
-    @Html.ActionLink("Назад", "DetailsQuestion", new { id = Model.QuestionId })
-</div>

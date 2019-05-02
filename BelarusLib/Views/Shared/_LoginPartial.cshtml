@@ -1,28 +1,24 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+<div class="navbar-text">
+    @if (Request.IsAuthenticated)
     {
-        @Html.AntiForgeryToken()
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
 
-        <ul class="nav navbar-nav navbar-right">
-            @if (User.IsInRole("Admin"))
+
+            if (User.IsInRole("Admin"))
             {
-                <li>
-                    @Html.ActionLink("Панэль адміністратара", "Index", "Admin")
-                </li>
+                @Html.ActionLink("Панэль адміністратара", "Index", "Admin", routeValues: null, htmlAttributes: new { @class = "butn butn-primary navbar-butn butn-shadow butn-gradient" })
             }
-            <li>
-                @Html.ActionLink("Добры дзень, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйсці</a></li>
-        </ul>
+            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "butn butn-primary navbar-butn butn-shadow butn-gradient" })
+
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="butn butn-outline-primary">Выйсці</a>
+        }
     }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Регiстрацыя", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Уваход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+    else
+    {
+        @Html.ActionLink("Регiстрацыя", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "butn butn-outline-primary" })
+        @Html.ActionLink("Уваход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "butn butn-primary navbar-butn butn-shadow butn-gradient" })
+    }
+</div>

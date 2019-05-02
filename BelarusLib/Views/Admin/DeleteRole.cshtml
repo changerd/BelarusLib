@@ -1,15 +1,19 @@
 ﻿@model BelarusLib.Models.ApplicationRole
 
 @{
-    ViewBag.Title = "Удаление роли";
+    ViewBag.Title = "Выдаленне ролі";
 }
 
-<h1>Вы точно хотите удалить роль: <b>@Model.Name</b>?</h1>
+<section>
+    <div class="container">
+        <h1>Вы сапраўды хочаце выдаліць ролю: <b>@Model.Name</b>?</h1>
 
-@using (Html.BeginForm())
-{
-    <div class="form-group">
-        <input type="submit" value="Удалить" class="btn btn-danger" />
-        <a class="btn btn-default" href="@Url.Action("GetRole", "Admin")">Назад</a>
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <input type="submit" value="Выдаліць" class="btn btn-danger" />
+                <a class="btn btn-dark" href="@Url.Action("GetRole", "Admin")">Назад</a>
+            </div>
+        }
     </div>
-}
+</section>

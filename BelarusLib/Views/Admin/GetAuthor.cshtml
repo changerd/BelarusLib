@@ -4,31 +4,40 @@
     ViewBag.Title = "Аўтары";
 }
 
-<h2>Аўтары</h2>
+<section>
+    <div class="container">
+        <h2>Аўтары</h2>
 
-<p>
-    @Html.ActionLink("Стварыць", "CreateAuthor")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AuthorFullName)
-        </th>
-        <th></th>
-    </tr>
+        <p>
+            @Html.ActionLink("Стварыць", "CreateAuthor")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AuthorFullName)
+                </th>
+                <th></th>
+            </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorFullName)
-            </td>
-            <td>
-                @Html.ActionLink("Рэдагаваць", "EditAuthor", new { id = item.AuthorId }) |
-                @Html.ActionLink("Больш падрабязна", "DetailsAuthor", new { id = item.AuthorId }) |
-                @Html.ActionLink("Выдалiць", "DeleteAuthor", new { id = item.AuthorId })
-            </td>
-        </tr>
-    }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AuthorFullName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Рэдагаваць", "EditAuthor", new { id = item.AuthorId }) |
+                        @Html.ActionLink("Больш падрабязна", "DetailsAuthor", new { id = item.AuthorId }) |
+                        @Html.ActionLink("Выдалiць", "DeleteAuthor", new { id = item.AuthorId })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+
+        <p>
+            <a class="btn btn-dark" href=@Url.Action("Index")>Назад</a>
+        </p>
+    </div>
+</section>
+

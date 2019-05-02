@@ -4,12 +4,16 @@
     ViewBag.Title = "Выдаленне аўтара";
 }
 
-<h1>Вы дакладна хочаце выдаліць аўтара: <b>@Model.AuthorFullName</b>?</h1>
+<section>
+    <div class="container">
+        <h1>Вы дакладна хочаце выдаліць аўтара: <b>@Model.AuthorFullName</b>?</h1>
 
-@using (Html.BeginForm())
-{
-    <div class="form-group">
-        <input type="submit" value="Выдаліць" class="btn btn-danger" />
-        <a class="btn btn-default" href="@Url.Action("GetAuthor", "Admin")">Назад</a>
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <input type="submit" value="Выдаліць" class="btn btn-danger" />
+                <a class="btn btn-dark" href="@Url.Action("GetAuthor", "Admin")">Назад</a>
+            </div>
+        }
     </div>
-}
+</section>

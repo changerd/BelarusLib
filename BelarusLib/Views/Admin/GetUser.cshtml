@@ -1,34 +1,37 @@
 ﻿@model IEnumerable<BelarusLib.Models.ApplicationUser>
 
 @{
-    ViewBag.Title = "Пользователи";
+    ViewBag.Title = "Карыстальнікі";
 }
 
-<h2>Пользователи</h2>
+<section>
+    <div class="container">
+        <h2>Карыстальнікі</h2>
 
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Лагiн")
+                </th>
+                <th></th>
+            </tr>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Логин")
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Больш падрабязна", "DetailsUser", new { id = item.Id }) |
+                        @Html.ActionLink("Выдаліць", "DeleteUser", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </table>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Подробнее", "DetailsUser", new { id = item.Id }) |
-                @Html.ActionLink("Удалить", "DeleteUser", new { id = item.Id })
-            </td>
-        </tr>
-    }
-</table>
-
-<div>
-    @Html.ActionLink("Назад", "Index")
-</div>
+        <p>
+            <a class="btn btn-dark" href=@Url.Action("Index")>Назад</a>
+        </p>
+    </div>
+</section>

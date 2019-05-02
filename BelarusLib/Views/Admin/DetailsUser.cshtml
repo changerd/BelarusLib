@@ -2,120 +2,125 @@
 @using BelarusLib.Models
 
 @{
-    ViewBag.Title = "Данные о пользователе";
+    ViewBag.Title = "Дадзеныя аб карыстальніку";
 }
 
-<h2>Данные о пользователи</h2>
+<section>
+    <div class="container">
+        <h2>Дадзеныя аб карыстальніку</h2>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.FullName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Birth)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Birth)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Birth)
-        </dd>        
+                <dd>
+                    @Html.DisplayFor(model => model.Birth)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailConfirmed)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EmailConfirmed)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmailConfirmed)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.EmailConfirmed)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PasswordHash)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PasswordHash)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.PasswordHash)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SecurityStamp)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SecurityStamp)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SecurityStamp)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.SecurityStamp)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TwoFactorEnabled)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.TwoFactorEnabled)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LockoutEndDateUtc)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.LockoutEndDateUtc)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LockoutEnabled)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LockoutEnabled)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LockoutEnabled)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.LockoutEnabled)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.AccessFailedCount)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AccessFailedCount)
-        </dd>
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.AccessFailedCount)
+                </dd>
+            </dl>
 
-</div>
-<p>
-    @Html.ActionLink("Назад", "GetUser")
-</p>
+        </div>
+        <p>
+            @Html.ActionLink("Назад", "GetUser", "Admin", htmlAttributes: new { @class="btn btn-dark "})
+        </p>
+    </div>
+</section>
+

@@ -4,92 +4,96 @@
     ViewBag.Title = "Аўтар";    
 }
 
-<h2>Аўтар</h2>
+<section>
+    <div class="container">
+        <h2>Аўтар</h2>
 
-<div>
-    <hr />
-    <div class="row">
-        <a class="btn btn-primary" href=@Url.Action("CreateFact", new { aid = Model.AuthorId })>Дадаць факт</a>
-        <a class="btn btn-primary" href=@Url.Action("Рэдагаваць", "EditAuthor", new { id = Model.AuthorId })>Рэдагаваць</a>
-        <a class="btn btn-primary" href=@Url.Action("GetAuthor")>Назад</a>        
+        <div>
+            <hr />
+            <div>
+                <a class="btn btn-dark" href=@Url.Action("CreateFact", new { aid = Model.AuthorId })>Дадаць факт</a>
+                <a class="btn btn-dark" href=@Url.Action("Рэдагаваць", "EditAuthor", new { id = Model.AuthorId })>Рэдагаваць</a>
+                <a class="btn btn-dark" href=@Url.Action("GetAuthor")>Назад</a>
+            </div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.AuthorFullName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AuthorFullName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AuthorPhoto)
+                </dt>
+
+                @if (Model.AuthorPhoto != null)
+                {
+                    <dd>
+                        @Html.Raw("<img src=\"data:image/jpeg;base64," + Convert.ToBase64String(Model.AuthorPhoto) + "\" />")
+                    </dd>
+                }
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AuthorBirthDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AuthorBirthDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AuthorBirthDeath)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AuthorBirthDeath)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AuthorBirthPlace)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AuthorBirthPlace)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AuthorBiography)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AuthorBiography)
+                </dd>
+
+            </dl>
+        </div>
+
+        <h3>Фактi</h3>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Факт")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.Facts)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FactText)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Редатировать", "EditFact", new { id = item.FactId }) |
+                        @Html.ActionLink("Удалить", "DeleteFact", new { id = item.FactId })
+                    </td>
+                </tr>
+            }
+
+        </table>
     </div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorFullName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AuthorFullName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorPhoto)
-        </dt>
-
-        @if (Model.AuthorPhoto != null)
-        {
-            <dd>
-                @Html.Raw("<img src=\"data:image/jpeg;base64," + Convert.ToBase64String(Model.AuthorPhoto) + "\" />")
-            </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorBirthDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AuthorBirthDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorBirthDeath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AuthorBirthDeath)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorBirthPlace)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AuthorBirthPlace)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorBiography)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AuthorBiography)
-        </dd>
-
-    </dl>
-</div>
-
-<h3>Фактi</h3>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Факт")
-        </th>        
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Facts)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FactText)
-            </td>            
-            <td>
-                @Html.ActionLink("Редатировать", "EditFact", new { id = item.FactId }) |
-                @Html.ActionLink("Удалить", "DeleteFact", new { id = item.FactId })
-            </td>
-        </tr>
-    }
-
-</table>
+</section>

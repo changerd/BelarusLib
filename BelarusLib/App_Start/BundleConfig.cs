@@ -23,6 +23,7 @@ namespace BelarusLib
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/style-red.css",
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }

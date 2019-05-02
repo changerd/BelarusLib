@@ -1,59 +1,61 @@
 ﻿@model BelarusLib.Models.Quiz
 
 @{
-    ViewBag.Title = "Создание викторины";
+    ViewBag.Title = "Стварэнне тэсту";
 }
 
-<h2>Создание викторины</h2>
+<section>
+    <div class="container">
+        <h2>Стварэнне тэсту</h2>
 
-@using (Html.BeginForm("CreateQuiz", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
+        @using (Html.BeginForm("CreateQuiz", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuizName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuizName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QuizName, "", new { @class = "text-danger" })
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.QuizName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.QuizName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.QuizName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.QuizDuration, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.QuizDuration, new { htmlAttributes = new { @class = "form-control", @type = "time" } })
+                        @Html.ValidationMessageFor(model => model.QuizDuration, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.QuizDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.QuizDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.QuizDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div id="questionblock">
+                    @Html.ValidationMessage("Questions", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" class="addQuestion btn btn-dark" value="Дадаць пытанне">
+                        <input type="submit" value="Стварыць" class="btn btn-dark" />
+                        @Html.ActionLink("Назад", "Index", "Admin", htmlAttributes: new { @class = "btn btn-dark" })
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuizDuration, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuizDuration, new { htmlAttributes = new { @class = "form-control", @type = "time" } })
-                @Html.ValidationMessageFor(model => model.QuizDuration, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuizDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuizDescription, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QuizDescription, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div id="questionblock">
-            @Html.ValidationMessage("Questions", new { @class = "text-danger" })
-
-        </div>        
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <a class="addQuestion btn btn-primary">Добавить вопрос</a>
-                <input type="submit" value="Создать" class="btn btn-primary" />
-            </div>
-        </div>
+        }
     </div>
-}
+</section>
 
-<div>
-    @Html.ActionLink("Назад", "Index")
-</div>
 
 @section Scripts {
     <script>

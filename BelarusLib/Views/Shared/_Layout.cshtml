@@ -9,32 +9,52 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("BelarusLib", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Творы", "Compositions", "Home")</li>
-                    <li>@Html.ActionLink("Аб праграме", "About", "Home")</li>
-                    <li>@Html.ActionLink("Дапамога", "Help", "Home")</li>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            @Html.ActionLink("BelarusLib", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
+                    <li class="nav-item">@Html.ActionLink("Авторы", "Help", "Home", new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Творы", "Help", "Home", new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Тесты", "Help", "Home", new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Аб праграме", "About", "Home", new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Дапамога", "Help", "Home", new { @class = "nav-link" })</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
 
+                <!-- Button trigger modal-->@*<a href="#" data-toggle="modal" data-target="#exampleModal" class="butn butn-primary navbar-butn butn-shadow butn-gradient">Sign Up</a>*@
+                @Html.Partial("_LoginPartial")
+
+            </div>
+        </nav>
+    </header>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("BelarusLib", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Творы", "Compositions", "Home")</li>
+                        <li>@Html.ActionLink("Аб праграме", "About", "Home")</li>
+                        <li>@Html.ActionLink("Дапамога", "Help", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>*@
+    <div>
         @RenderBody()
         <hr />
         <footer>
-            <p class="text-center">&copy; @DateTime.Now.Year – BelarusLib</p>
+            <div class="copyrights">
+                <p class="text-center">&copy; @DateTime.Now.Year – BelarusLib</p>
+            </div>
         </footer>
     </div>
 

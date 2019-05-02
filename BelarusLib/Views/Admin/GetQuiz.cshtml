@@ -1,47 +1,52 @@
 ﻿@model IEnumerable<BelarusLib.Models.Quiz>
 
 @{
-    ViewBag.Title = "Викторины";
+    ViewBag.Title = "Тэсты";
 }
 
-<h2>Викторины</h2>
+<section>
+    <div class="container">
+        <h2>Тэсты</h2>
 
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuizName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuizDuration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuizDescription)
+                </th>
+                <th></th>
+            </tr>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.QuizName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuizDuration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuizDescription)
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuizName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuizDuration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuizDescription)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Рэдагаваць", "EditQuiz", new { id = item.QuizId }) |
+                        @Html.ActionLink("Больш падрабязна", "DetailsQuiz", new { id = item.QuizId }) |
+                        @Html.ActionLink("Выдаліць", "DeleteQuiz", new { id = item.QuizId })
+                    </td>
+                </tr>
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuizName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuizDuration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuizDescription)
-        </td>
-        <td>
-            @Html.ActionLink("Редактировать", "EditQuiz", new { id=item.QuizId }) |
-            @Html.ActionLink("Подробнее", "DetailsQuiz", new { id=item.QuizId }) |
-            @Html.ActionLink("Удалить", "DeleteQuiz", new { id=item.QuizId })
-        </td>
-    </tr>
-}
+        </table>
 
-</table>
+        <p>
+            <a class="btn btn-dark" href=@Url.Action("Index")>Назад</a>
+        </p>
+    </div>
+</section>
 
-<p>
-    <a class="btn btn-primary" href=@Url.Action("Index")>Назад</a>
-</p>

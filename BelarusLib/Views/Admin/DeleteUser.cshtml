@@ -1,16 +1,19 @@
 ﻿@model BelarusLib.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "Удаление пользователя";
+    ViewBag.Title = "Выдаленне карыстальніка";
 }
 
-<h1>Вы точно хотите удалить пользователя: <b>@Model.UserName</b>?</h1>
+<section>
+    <div class="container">
+        <h1>Вы дакладна хочаце выдаліць карыстальніка: <b>@Model.UserName</b>?</h1>
 
-@using (Html.BeginForm())
-{
-    <div class="form-group">
-        <input type="submit" value="Удалить" class="btn btn-danger" />
-        <a class="btn btn-default" href="@Url.Action("GetUser", "Admin")">Назад</a>
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <input type="submit" value="Выдаліць" class="btn btn-danger" />
+                <a class="btn btn-dark" href="@Url.Action("GetUser", "Admin")">Назад</a>
+            </div>
+        }
     </div>
-}
-
+</section>
