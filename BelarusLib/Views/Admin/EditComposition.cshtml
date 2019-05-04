@@ -9,7 +9,7 @@
     <div class="container">
         <h2>Рэдагаванне твора</h2>
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("EditComposition", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 

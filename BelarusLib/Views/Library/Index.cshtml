@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BelarusLib.Models.Genre>
+
+@{
+    ViewBag.Title = "Бібліятэка";
+}
+
+<section id="extra-features" class="extra-features bag-primary">
+    <div class="container text-center">
+        <header>
+            <h2>Бібліятэка</h2>
+            <div class="row">
+                <p class="lead col-lg-8 mx-auto">Выберыце патрэбны вам жанр твораў</p>
+            </div>
+            <br />
+            <div class="text-center">
+                <form method="get" id="redform" action=@Url.Action("Compositions")>
+                    <input type="text" name="SearchResult" placeholder="Пошук" id="SearchResult">
+                    <button type="submit" class="butn butn-outline-dark">Пошук</button>
+                </form>
+            </div>
+        </header>        
+        <div class="grid row">
+            <a href=@Url.Action("Compositions") class="item col-lg-4 col-md-6">
+                <h3 class="h5">Усе творы</h3>
+                <p>Усе творы ў бібліятэцы</p>
+            </a>
+            @foreach (var item in Model)
+            {
+
+                <a href=@Url.Action("Compositions", new { GenreId = item.GenreId}) class="item col-lg-4 col-md-6">
+                    <h3 class="h5">@item.GenreName</h3>
+                    <p>@item.GenreDescription</p>
+                </a>
+            }            
+        </div>
+    </div>
+</section>
+

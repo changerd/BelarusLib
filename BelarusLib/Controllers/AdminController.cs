@@ -437,7 +437,7 @@ namespace BelarusLib.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("GetComposition");
             }
-            return EditAuthor(composition.CompositionId);
+            return EditComposition(composition.CompositionId);
         }
         public ActionResult GetGenre()
         {

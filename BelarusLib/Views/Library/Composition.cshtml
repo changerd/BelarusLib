@@ -1,0 +1,34 @@
+﻿@model BelarusLib.Models.Composition
+
+@{
+    ViewBag.Title = "Composition";
+}
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div align="center"><img class="thumbnail" src="data:image/jpeg;base64, @Convert.ToBase64String(Model.CompositionCover)" /></div>
+                <h3>Апісанне:</h3>
+                <p>@Model.CompositionDescription</p>
+            </div>
+            <div class="col-sm-4">
+                <h1>@Model.CompositionName</h1>
+                <h2>
+                    Аўтар: @Model.Author.AuthorFullName
+                </h2>
+                <h2>Жанр:</h2>
+                <ul>
+                    @foreach (var g in Model.Genres)
+                    {
+                        <li>@g.GenreName</li>
+                    }
+
+                </ul>
+                <a class="butn butn-outline-primary" href=@Model.CompositionLink target="_blank">Спампаваць</a>
+            </div>
+        </div>
+    </div>
+</section>
+

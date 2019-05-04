@@ -1,5 +1,5 @@
-﻿@model IEnumerable<BelarusLib.Models.Composition>
-@using BelarusLib.Models
+﻿@model BelarusLib.Models.CompositionsListViewModel
+@using BelarusLib.Infastructure
 
 @{
     ViewBag.Title = "Творы";
@@ -11,13 +11,17 @@
         {
             <h2>@ViewBag.Genre</h2>
         }
+        else if (ViewBag.SearchResult != null)
+        {
+            <h2> Результаты поиска: @ViewBag.SearchResult </h2>
+        }
         else
         {
             <h2>Творы</h2>
         }
         <hr />
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.Compositions)
         {
             <div class="block">
                 <blockquote class="blockquote">
@@ -41,5 +45,8 @@
                 </blockquote>
             </div>
         }
+        <div>
+            @Html.PageLinks(Model.PagingInfo, x => Url.Action("Compositions", new { page = x, GenreId = ViewBag.GenreId, SearchResult = ViewBag.SearchResult }))
+        </div>
     </div>
 </section>

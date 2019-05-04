@@ -12,7 +12,7 @@
             <hr />
             <div>
                 <a class="btn btn-dark" href=@Url.Action("CreateFact", new { aid = Model.AuthorId })>Дадаць факт</a>
-                <a class="btn btn-dark" href=@Url.Action("Рэдагаваць", "EditAuthor", new { id = Model.AuthorId })>Рэдагаваць</a>
+                <a class="btn btn-dark" href=@Url.Action("EditAuthor", new { id = Model.AuthorId })>Рэдагаваць</a>
                 <a class="btn btn-dark" href=@Url.Action("GetAuthor")>Назад</a>
             </div>
             <hr />
@@ -66,6 +66,14 @@
 
                 <dd>
                     @Html.DisplayFor(model => model.AuthorBiography)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AuthorShortDescription)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AuthorShortDescription)
                 </dd>
 
             </dl>

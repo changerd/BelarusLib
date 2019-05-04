@@ -29,6 +29,10 @@ namespace BelarusLib.Models
         [DataType(DataType.MultilineText)]
         [Display(Name = "Біяграфія")]
         public string AuthorBiography { get; set; }
+        [Required]
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Кароткае апісанне")]
+        public string AuthorShortDescription { get; set; }
         public virtual ICollection<Composition> Compositions { get; set; }
         public virtual ICollection<Audio> Audios { get; set; }
         public virtual ICollection<Video> Videos { get; set; }

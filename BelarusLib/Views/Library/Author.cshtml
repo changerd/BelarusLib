@@ -1,0 +1,130 @@
+﻿@model BelarusLib.Models.Author
+
+@{
+    ViewBag.Title = Model.AuthorFullName;
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+
+                <div align="center"><img class="thumbnail" src="data:image/jpeg;base64, @Convert.ToBase64String(Model.AuthorPhoto)" /></div>
+                <hr />
+                <h3>Біяграфія:</h3>
+                <p>@Model.AuthorBiography</p>
+            </div>
+            <div class="col-sm-4">
+                <h1>@Model.AuthorFullName</h1>
+                <h2>
+                    Дата нараджэння: @Model.AuthorBirthDate.ToShortDateString()
+                </h2>
+                @if (Model.AuthorBirthDeath != null)
+                {
+                    <h2>Дата смерці: @Model.AuthorBirthDeath.Value.ToShortDateString()</h2>
+                }
+                <h2>Месца нараджэння: @Model.AuthorBirthPlace</h2>
+                <!-- Button trigger modal -->
+                <button type="button" class="butn butn-primary butn-shadow butn-gradient" data-toggle="modal" data-target="#factModal">
+                    Цікавыя факты
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="factModal" tabindex="-1" role="dialog" aria-labelledby="factModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="factModalLabel">Цікавыя факты</h5>                                
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    @foreach (var fact in Model.Facts)
+                                    {
+                                        <li>@fact.FactText</li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="modal-footer">                                
+                                <button type="button" class="butn butn-primary butn-shadow butn-gradient" data-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-composition-tab" data-toggle="tab" href="#nav-composition" role="tab" aria-controls="nav-composition" aria-selected="true">Творы</a>
+                <a class="nav-item nav-link" id="nav-audio-tab" data-toggle="tab" href="#nav-audio" role="tab" aria-controls="nav-audio" aria-selected="false">Аўдыёзапісы</a>
+                <a class="nav-item nav-link" id="nav-video-tab" data-toggle="tab" href="#nav-video" role="tab" aria-controls="nav-video" aria-selected="false">Відэазапісы</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-composition" role="tabpanel" aria-labelledby="nav-composition-tab">
+                <br />
+                @foreach (var item in Model.Compositions)
+                {
+                    <div class="block">
+                        <blockquote class="blockquote">
+                            <div class="row">
+                                @if (item.CompositionCover != null)
+                                {
+                                    <div class="col-sm-2" style="margin-right: 10px">
+                                        <img class="img-thumbnail" width="200" height="240" src="data:image/jpeg;base64, @Convert.ToBase64String(item.CompositionCover)" />
+                                    </div>
+                                }
+                                <div class="col-md-9">
+                                    <h3>
+                                        @Html.ActionLink(item.CompositionName, "Composition", new { id = item.CompositionId })
+                                    </h3>
+                                    <p class="mb-0">@item.CompositionDescription</p>
+                                    <footer class="blockquote-footer">
+                                        <cite title="Source Title">@item.Author.AuthorFullName</cite>
+                                    </footer>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                }
+            </div>
+            <div class="tab-pane fade" id="nav-audio" role="tabpanel" aria-labelledby="nav-audio-tab">
+                @foreach (var item in Model.Audios)
+                {
+                    <br />
+                    <div>
+                        <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src=@item.AudioLink></iframe>
+                    </div>                    
+                }
+            </div>
+            <div class="tab-pane fade" id="nav-video" role="tabpanel" aria-labelledby="nav-video-tab">
+                @foreach (var item in Model.Videos)
+                {
+                    <br />
+                    <div align="center">
+                        <iframe width="800" height="450" src=@item.VideoLink frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>                    
+                }
+            </div>
+        </div>
+        @*<h3>Творы</h3>
+
+        <div class="row panel">
+            @foreach (var item in Model.Compositions)
+            {
+                <div class="well">
+                    @if (item.CompositionCover != null)
+                    {
+                        <div class="pull-left" style="margin-right: 10px">
+                            <img class="img-thumbnail" width="75" height="89" src="data:image/jpeg;base64, @Convert.ToBase64String(item.CompositionCover)" />
+                        </div>
+                    }
+                    <h3>
+                        <strong>@Html.ActionLink(item.CompositionName, "Composition", new { id = item.CompositionId })</strong>
+                    </h3>
+                    <span class="lead">@item.CompositionDescription</span>
+                </div>
+            }
+
+        </div>*@
+    </div>
+</section>

@@ -17,7 +17,7 @@
 <section id="extra-features" class="extra-features bag-primary">
     <div class="container text-center">
         <header>
-            <h2>More great features             </h2>
+            <h2>More great features</h2>
             <div class="row">
                 <p class="lead col-lg-8 mx-auto">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
             </div>
@@ -64,41 +64,3 @@
         </div><a href="#" class="butn butn-primary butn-shadow butn-gradient">Discover More</a>
     </div>
 </section>
-@*<div class="jumbotron">
-    <h1>BelarusLib</h1>
-    <p class="lead">Бібліятэка беларускіх пісьменнікаў</p>    
-</div>
-
-<br />
-
-<div class="pull-right">
-    <form method="get" action="@Url.Action("SearchResult")">
-        <input type="text" name="search" id="search" />
-        <button type="submit" class="btn btn-dark">Пошук</button>
-    </form>
-</div>
-
-<br />
-
-<div class="row">
-    <div class="col-md-6">
-        <h2>Аўтары</h2>
-        <p>
-            <div class="list-group">
-                @foreach (Author a in ViewBag.Authors)
-                {
-                    <a href=@Url.Action("Author", "Home", new { id = a.AuthorId }) class="list-group-item list-group-item-action">@a.AuthorFullName</a>
-                }
-            </div>
-        </p>        
-    </div>
-    <div class="col-md-6">
-        <h2>Жанры</h2>
-        <p>
-            @foreach (Genre g in ViewBag.Genres)
-            {
-                <a href="@Url.Action("Compositions", "Home", new { id = g.GenreId })" class="list-group-item list-group-item-action">@g.GenreName</a>
-            }
-        </p>        
-    </div>  
-</div>*@
