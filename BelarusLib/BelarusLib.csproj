@@ -202,6 +202,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -320,7 +321,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -365,10 +365,6 @@
     <Content Include="Views\Admin\DeleteComposition.cshtml" />
     <Content Include="Views\Admin\EditComposition.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Home\Author.cshtml" />
-    <Content Include="Views\Home\Compositions.cshtml" />
-    <Content Include="Views\Home\Composition.cshtml" />
-    <Content Include="Views\Home\SearchResult.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
     <Content Include="Views\Admin\Help.cshtml" />
     <Content Include="Views\Admin\CreateChoice.cshtml" />
@@ -412,6 +408,10 @@
     <Content Include="Views\Library\SearchResultAuthors.cshtml" />
     <Content Include="Views\Library\Author.cshtml" />
     <Content Include="Views\Library\Composition.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\Start.cshtml" />
+    <Content Include="Views\Test\ShowResult.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

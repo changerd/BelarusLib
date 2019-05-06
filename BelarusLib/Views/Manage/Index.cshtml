@@ -1,87 +1,171 @@
 ﻿@model BelarusLib.Models.IndexViewModel
+@using BelarusLib.Models
+@using System.Data.Entity;
 @{
-    ViewBag.Title = "Управление";
+    ViewBag.Title = "Профiль";
+    ApplicationDbContext context = new ApplicationDbContext();
+    var results = context.Results.Include(q => q.Quiz).Where(u => u.UserId == Model.Id);
 }
 
-<h2>@ViewBag.Title.</h2>
+<section>
+    <div class="container">
+        <h2>@ViewBag.Title</h2>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>Изменение параметров учетной записи</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Пароль:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
+        <p class="text-success">@ViewBag.StatusMessage</p>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Лагін")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Электронная пошта")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Iмя")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FullName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Дата нараджэння")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Birth)
+                </dd>                
+
+                <dt>
+                    @Html.DisplayName("Тэлефон")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Telephone)
+                </dd>
+                <dt>Пароль:</dt>
+                <dd>
+                    [
+                    @if (Model.HasPassword)
+                    {
+                        @Html.ActionLink("Смена пароля", "ChangePassword")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Создать", "SetPassword")
+                    }
+                    ]
+                </dd>
+                @*<dt>Внешние имена входа:</dt>
+                <dd>
+                    @Model.Logins.Count [
+                    @Html.ActionLink("Управление", "ManageLogins") ]
+                </dd>*@
+                @*
+                Номера телефонов можно использовать в качестве второго проверочного фактора для системы двухфакторной проверки подлинности.
+
+                 В <a href="https://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
+                    можно узнать, как настроить для этого приложения ASP.NET двухфакторную проверку подлинности с использованием SMS.
+
+                 Настроив двухфакторную проверку подлинности, раскомментируйте следующий блок
+                *@
+                @*
+                <dt>Номер телефона:</dt>
+                <dd>
+                    @(Model.PhoneNumber ?? "None")
+                    @if (Model.PhoneNumber != null)
+                    {
+                        <br />
+                        <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                        using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <text>[<input type="submit" value="Удалить" class="btn-link" />]</text>
+                        }
+                    }
+                    else
+                    {
+                        <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                    }
+                </dd>
+                *@
+                @*<dt>Двухфакторная проверка подлинности:</dt>
+                <dd>
+                    <p>
+                        Поставщики двухфакторной проверки подлинности не настроены. В <a href="https://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
+                        можно узнать, как настроить двухфакторную проверку подлинности для этого приложения ASP.NET.
+                    </p>
+                    if (Model.TwoFactor)
+                        {
+                            using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <text>Включено
+                                <input type="submit" value="Отключить" class="btn btn-link" />
+                                </text>
+                            }
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <text>Отключено
+                                <input type="submit" value="Включить" class="btn btn-link" />
+                                </text>
+                            }
+                        }
+                </dd>*@
+            </dl>
+        </div>
+
+        <h3>Вынікі тэстаў</h3>
+
+        <hr />
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Тэст")
+                </th>
+                <th>
+                    @Html.DisplayName("Дата")
+                </th>
+                <th>
+                    @Html.DisplayName("Адзнака")
+                </th>
+            </tr>
+
+            @foreach (var item in results)
             {
-                @Html.ActionLink("Смена пароля", "ChangePassword")
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quiz.QuizName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ResultDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ResultScore)
+                    </td>
+                </tr>
             }
-            else
-            {
-                @Html.ActionLink("Создать", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>Внешние имена входа:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Управление", "ManageLogins") ]
-        </dd>
-        @*
-            Номера телефонов можно использовать в качестве второго проверочного фактора для системы двухфакторной проверки подлинности.
-             
-             В <a href="https://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
-                можно узнать, как настроить для этого приложения ASP.NET двухфакторную проверку подлинности с использованием SMS.
-             
-             Настроив двухфакторную проверку подлинности, раскомментируйте следующий блок
-        *@
-        @*  
-            <dt>Номер телефона:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
-                {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Удалить" class="btn-link" />]</text>
-                    }
-                }
-                else
-                {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
-                }
-            </dd>
-        *@
-        <dt>Двухфакторная проверка подлинности:</dt>
-        <dd>
-            <p>
-                Поставщики двухфакторной проверки подлинности не настроены. В <a href="https://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
-                можно узнать, как настроить двухфакторную проверку подлинности для этого приложения ASP.NET.
-            </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Включено
-                        <input type="submit" value="Отключить" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Отключено
-                        <input type="submit" value="Включить" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
-        </dd>
-    </dl>
-</div>
+        </table>
+
+        <p>
+            @Html.ActionLink("Назад", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "butn butn-primary navbar-butn butn-shadow butn-gradient" })
+            @Html.ActionLink("Рэдагаваць профіль", "Edit", new { id = Model.Id }, new { @class = "butn butn-primary navbar-butn butn-shadow butn-gradient" })
+        </p>
+    </div>
+</section>

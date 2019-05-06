@@ -1,0 +1,31 @@
+﻿@model IEnumerable<BelarusLib.Models.Quiz>
+
+@{
+    ViewBag.Title = "Тэсты";
+}
+
+<section>
+    <div class="container">
+        <h1 class="text-center">Тэсты</h1>
+        <hr />
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">@item.QuizName</div>
+                        <div class="card-body">
+                            <p>Апісанне: @item.QuizDescription</p>
+                            <p>Колькасць пытанняў: @item.Questions.Count()</p>
+                            <p>Працягласць: @item.QuizDuration</p>
+                        </div>
+                        <div class="card-footer">
+                            @Html.ActionLink("Пачаць", "Start", new { id = item.QuizId })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+

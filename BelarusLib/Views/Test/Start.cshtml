@@ -1,0 +1,101 @@
+﻿@model BelarusLib.Models.Quiz
+@using BelarusLib.Models
+
+@{
+    ViewBag.Title = Model.QuizName;
+    ApplicationDbContext db = new ApplicationDbContext();
+    var questions = db.Questions.Where(q => q.QuizId == Model.QuizId).ToList();
+    Random random = new Random();
+    int count = 0;
+    for (int i = questions.Count - 1; i >= 1; i--)
+    {
+        int j = random.Next(i + 1);
+        // обменять значения data[j] и data[i]
+        var temp = questions[j];
+        questions[j] = questions[i];
+        questions[i] = temp;
+    }
+}
+
+<section>
+    <div class="container">
+        <h2>@Model.QuizName</h2>
+
+        <hr />
+        <h4 class="text-center" id="time"></h4>
+        <hr />
+        @using (Html.BeginForm("Start", "Test", FormMethod.Post, new { id = "form" }))
+        {
+            @Html.HiddenFor(model => model.QuizId)
+            foreach (var question in questions)
+            {
+                <input type="hidden" name="queid[@count]" value=@question.QuestionId>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">Пытанне @count</div>
+                        <div class="card-body">
+                            <h5 class="card-title">@question.QuestionText</h5>
+                            @if (question.QuestionImage != null)
+                            {
+                                <p>@Html.Raw("<img src=\"data:image/jpeg;base64," + Convert.ToBase64String(question.QuestionImage) + "\" />")</p>
+                            }
+                            @if (question.Choices.Count != 0)
+                            {
+                                <p>
+                                    @foreach (var choice in question.Choices)
+                                    {
+                                        <label class="radio-inline">
+                                            <input type="radio" value="@choice.ChoiceText" name="choices[@count]"> @choice.ChoiceText
+                                        </label><br />
+                                    }
+                                    <input type="hidden" value="null" name="choices[@count]">
+                                </p>
+                            }
+                            else
+                            {
+                                <p>
+                                    <input type="text" name="choices[@count]" class="form-control" />
+                                </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+                count++;
+            }
+            <input type="submit" value="Завяршыць" class="butn butn-primary navbar-butn butn-shadow butn-gradient" />
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        setInterval(submit_me, @ViewBag.Interval);
+        function submit_me() {
+            $('#form').submit();
+        }
+
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10)
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var time = @ViewBag.Interval / 1000,
+                display = document.querySelector('#time');
+            startTimer(time, display);
+        };
+
+    </script>
+}

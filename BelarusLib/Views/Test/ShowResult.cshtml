@@ -1,0 +1,51 @@
+﻿@model BelarusLib.Models.Result
+@using BelarusLib.Models
+
+@{
+    ViewBag.Title = "Вынік";
+}
+
+<section>
+    <div class="container">
+        <h2>Вынік</h2>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Тэст")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Quiz.QuizName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ResultScore)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ResultScore)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Правільных пытанняў")
+                </dt>
+
+                <dd>
+                    @ViewBag.Count
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ResultDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ResultDate)
+                </dd>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("На главную", "Index", "Test", new { @class = "butn butn-primary navbar-butn butn-shadow butn-gradient" })
+        </p>
+    </div>
+</section>

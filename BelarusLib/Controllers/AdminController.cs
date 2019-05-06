@@ -860,15 +860,7 @@ namespace BelarusLib.Controllers
             db.Choices.Remove(choice);
             await db.SaveChangesAsync();
             return RedirectToAction("DetailsQuestion", new { id = choice.QuestionId });
-        }
-        public ActionResult PublishQuiz(int id)
-        {
-            List<ApplicationUser> users = db.Users.ToList();
-            ViewBag.Users = users;
-            var quiz = db.Quizzes.Find(id);
-            return View(quiz);
-        }
-        [HttpPost]        
+        }        
         public ActionResult ResultQuiz(int id)
         {
             ViewBag.Name = db.Quizzes.Find(id).QuizName;
