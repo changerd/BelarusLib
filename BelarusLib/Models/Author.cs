@@ -37,12 +37,14 @@ namespace BelarusLib.Models
         public virtual ICollection<Audio> Audios { get; set; }
         public virtual ICollection<Video> Videos { get; set; }
         public virtual ICollection<Fact> Facts { get; set; }
+        public virtual ICollection<Photography> Photographies { get; set; }
         public Author()
         {
             Compositions = new List<Composition>();
             Audios = new List<Audio>();
             Videos = new List<Video>();
             Facts = new List<Fact>();
+            Photographies = new List<Photography>();
         }
     }
 }

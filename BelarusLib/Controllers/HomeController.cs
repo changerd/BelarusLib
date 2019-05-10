@@ -19,7 +19,7 @@ namespace BelarusLib.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Good luck.";
             return View();
         }
         public ActionResult Help()

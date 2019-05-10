@@ -12,6 +12,7 @@
             <hr />
             <div>
                 <a class="btn btn-dark" href=@Url.Action("CreateFact", new { aid = Model.AuthorId })>Дадаць факт</a>
+                <a class="btn btn-dark" href=@Url.Action("CreatePhotography", new { aid = Model.AuthorId })>Дадаць фотаздымак</a>
                 <a class="btn btn-dark" href=@Url.Action("EditAuthor", new { id = Model.AuthorId })>Рэдагаваць</a>
                 <a class="btn btn-dark" href=@Url.Action("GetAuthor")>Назад</a>
             </div>
@@ -96,8 +97,32 @@
                         @Html.DisplayFor(modelItem => item.FactText)
                     </td>
                     <td>
-                        @Html.ActionLink("Редатировать", "EditFact", new { id = item.FactId }) |
-                        @Html.ActionLink("Удалить", "DeleteFact", new { id = item.FactId })
+                        @Html.ActionLink("Рэдагаваць", "EditFact", new { id = item.FactId }) |
+                        @Html.ActionLink("Выдаліць", "DeleteFact", new { id = item.FactId })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <h3>Фатаграфіі</h3>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Фотаздымак")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.Photographies)
+            {
+                <tr>
+                    <td>
+                        @Html.Raw("<img name=\"uploadImage\" src=\"data:image/jpeg;base64," + Convert.ToBase64String(item.PhotographyPhoto) + "\" />")
+                    </td>
+                    <td>                        
+                        @Html.ActionLink("Выдаліць", "DeletePhotography", new { id = item.PhotographyId })
                     </td>
                 </tr>
             }

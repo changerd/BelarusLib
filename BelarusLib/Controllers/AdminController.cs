@@ -325,6 +325,54 @@ namespace BelarusLib.Controllers
             }
             return EditFact(fact.FactId);
         }
+        public ActionResult CreatePhotography(int aid)
+        {
+            aid = db.Authors.Find(aid).AuthorId;
+            ViewBag.AuthorId = aid;
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> CreatePhotography(Photography photography, int AuthorId, HttpPostedFileBase uploadImage)
+        {
+            photography.AuthorId = AuthorId;
+            if (uploadImage != null)
+            {
+                byte[] imageData = null;
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+                photography.PhotographyPhoto = imageData;
+            }
+            if (photography.PhotographyPhoto == null)
+            {
+                ModelState.AddModelError("Photo", "Для автора не выбрана фотография.");
+            }
+            //if (ModelState.IsValid)
+            //{
+                db.Photographies.Add(photography);
+                await db.SaveChangesAsync();
+                return RedirectToAction("DetailsAuthor", new { id = AuthorId });
+            //}
+            //return (CreatePhotography(photography.AuthorId));
+        }
+        public ActionResult DeletePhotography(int id)
+        {
+            var photography = db.Photographies.Find(id);
+            if (photography == null)
+                return HttpNotFound();
+            return View(photography);
+        }
+        [HttpPost, ActionName("DeletePhotography")]
+        public async Task<ActionResult> DeletePhotographyConfimed(int id)
+        {
+            var photography = db.Photographies.Find(id);
+            if (photography == null)
+                return HttpNotFound();
+            db.Photographies.Remove(photography);
+            await db.SaveChangesAsync();
+            return RedirectToAction("DetailsAuthor", new { id = photography.AuthorId });
+        }
         public ActionResult GetComposition()
         {
             return View(db.Compositions.Include(a => a.Author).Include(g => g.Genres).ToList());

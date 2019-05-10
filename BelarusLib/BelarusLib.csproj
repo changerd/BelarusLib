@@ -228,6 +228,18 @@
     <Compile Include="Migrations\201905040954089_DataMigration4.Designer.cs">
       <DependentUpon>201905040954089_DataMigration4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905101628508_DataMigration5.cs" />
+    <Compile Include="Migrations\201905101628508_DataMigration5.Designer.cs">
+      <DependentUpon>201905101628508_DataMigration5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905101637523_DataMigration6.cs" />
+    <Compile Include="Migrations\201905101637523_DataMigration6.Designer.cs">
+      <DependentUpon>201905101637523_DataMigration6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905101638256_DataMigration7.cs" />
+    <Compile Include="Migrations\201905101638256_DataMigration7.Designer.cs">
+      <DependentUpon>201905101638256_DataMigration7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -241,6 +253,7 @@
     <Compile Include="Models\Fact.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PagingInfo.cs" />
+    <Compile Include="Models\Photography.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Quiz.cs" />
     <Compile Include="Models\Result.cs" />
@@ -260,7 +273,10 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\author-icon.png" />
+    <Content Include="Content\img\book-icon.png" />
     <Content Include="Content\img\Macbook.png" />
+    <Content Include="Content\img\test-icon.png" />
     <Content Include="Content\style-red.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -412,6 +428,8 @@
     <Content Include="Views\Test\Start.cshtml" />
     <Content Include="Views\Test\ShowResult.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\Admin\CreatePhotography.cshtml" />
+    <Content Include="Views\Admin\DeletePhotography.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -433,6 +451,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905040954089_DataMigration4.resx">
       <DependentUpon>201905040954089_DataMigration4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905101628508_DataMigration5.resx">
+      <DependentUpon>201905101628508_DataMigration5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905101637523_DataMigration6.resx">
+      <DependentUpon>201905101637523_DataMigration6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905101638256_DataMigration7.resx">
+      <DependentUpon>201905101638256_DataMigration7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -461,7 +488,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49675</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49677/</IISUrl>
+          <IISUrl>http://localhost:49678/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
