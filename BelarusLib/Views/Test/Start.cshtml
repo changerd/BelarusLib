@@ -7,6 +7,7 @@
     var questions = db.Questions.Where(q => q.QuizId == Model.QuizId).ToList();
     Random random = new Random();
     int count = 0;
+    int qcount = 1;
     for (int i = questions.Count - 1; i >= 1; i--)
     {
         int j = random.Next(i + 1);
@@ -32,7 +33,7 @@
                 <input type="hidden" name="queid[@count]" value=@question.QuestionId>
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Пытанне @count</div>
+                        <div class="card-header">Пытанне @qcount</div>
                         <div class="card-body">
                             <h5 class="card-title">@question.QuestionText</h5>
                             @if (question.QuestionImage != null)
@@ -62,6 +63,7 @@
                     <br />
                 </div>
                 count++;
+                qcount++;
             }
             <input type="submit" value="Завяршыць" class="butn butn-primary navbar-butn butn-shadow butn-gradient" />
         }

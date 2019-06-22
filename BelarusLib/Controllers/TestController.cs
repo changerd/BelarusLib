@@ -40,7 +40,7 @@ namespace BelarusLib.Controllers
                 if (String.Equals(question.QuestionAnswer, choices[i]))
                     count++;
             }
-            int mark = 10 / queid.Count * count;
+            int mark = 10 * count / queid.Count;
             Result result = new Result
             {
                 QuizId = quiz.QuizId,
