@@ -162,10 +162,13 @@
                 </tr>
             }
         </table>
-
-        <p>
-            @Html.ActionLink("Назад", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "butn butn-primary navbar-butn butn-shadow butn-gradient" })
-            @Html.ActionLink("Рэдагаваць профіль", "Edit", new { id = Model.Id }, new { @class = "butn butn-primary navbar-butn butn-shadow butn-gradient" })
-        </p>
+        <div class="row">
+            <div>
+                @Html.ActionLink("Рэдагаваць профіль", "Edit", new { id = Model.Id }, new { @class = "butn butn-primary navbar-butn butn-shadow butn-gradient" })
+            </div>
+            <div>
+                @Html.ActionLink("Назад", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "butn butn-primary navbar-butn butn-shadow butn-gradient" })
+            </div>
+        </div>       
     </div>
 </section>
